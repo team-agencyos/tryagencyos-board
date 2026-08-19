@@ -80,6 +80,9 @@ section{padding-top:46px;scroll-margin-top:56px}
 .phd{padding:13px 17px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
 .blk{padding:12px 17px;font-size:.85rem;color:var(--ink2);border-left:3px solid var(--warn);background:var(--warnSoft)}
 .blk.high{border-left-color:var(--stop);background:var(--stopSoft)}
+.blk.done{border-left-color:var(--ok);background:var(--surface)}
+.blk.done b{color:var(--ok)}
+.blk .when{font-family:var(--mono);font-size:.65rem;color:var(--muted);font-weight:400;margin-left:6px}
 .blk+.blk{border-top:1px solid var(--lineSoft)}
 .blk b{display:block;color:var(--ink);font-size:.87rem;margin-bottom:2px}
 .pitem{display:flex;gap:10px;padding:9px 17px;font-size:.85rem;color:var(--ink2)}
@@ -172,15 +175,20 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <div class="stat warn"><span class="eyebrow">Phase</span><div class="v">0<small>/8</small></div><div class="sub">Inventory — nearly done</div></div>
 <div class="stat ok"><span class="eyebrow">Client identity known</span><div class="v">11<small>/11</small></div><div class="sub">Growth Archon holds 7</div></div>
 <div class="stat stop"><span class="eyebrow">Decisions made</span><div class="v">0<small>/7</small></div><div class="sub">All seven gate Phase 1</div></div>
-<div class="stat warn"><span class="eyebrow">Open blockers</span><div class="v">6</div><div class="sub">1 high · 5 medium</div></div>
+<div class="stat warn"><span class="eyebrow">Open blockers</span><div class="v">7</div><div class="sub">1 high · 6 medium · 3 closed</div></div>
 </div>
 <div class="two"><div class="panel"><div class="phd"><h3>Open blockers</h3></div>
-<div class="blk high"><b>Is the KAMS domain its own Workspace tenant?</b>Now affects three client relationships as well as three people. If yes, Phase 2 is three migration runs instead of one — still the biggest schedule variable in the plan.</div>
-<div class="blk "><b>Confirm KAMS is the Kas &amp; Z estate</b>Mapped that way here. If it is a separate entity, the estate count and Phase 2 both change again.</div>
-<div class="blk "><b>4 clients have no lead assigned</b>Each needs a named owner to run the runbook and hold the client conversation.</div>
+<div class="blk high"><b>Growth Archon runs on Fastmail, not Google Workspace</b>Confirmed from DNS: its MX points at Fastmail. It holds 7 of 11 client relationships, so Phase 2 is now two different migration types — Google-to-Google for the others, IMAP for this one. Google's tenant-to-tenant tooling does not apply.</div>
+<div class="blk "><b>Is the KAMS domain a separate tenant or a secondary domain?</b>Confirmed Google Workspace from DNS, which removes the Microsoft risk. Still unknown whether it is its own tenant. Also still to confirm that KAMS is the Kas &amp; Z estate.</div>
+<div class="blk "><b>4 clients have no lead assigned</b>SV is first in the queue, so this blocks the start, not the middle.</div>
+<div class="blk "><b>Client work sits in a personal GitHub account</b>Six repos including client dashboards and reports live on a personal namespace rather than the org. Ownership dressed up as access — exactly the Phase 0 pattern.</div>
 <div class="blk "><b>One client's scope is unconfirmed</b>Untriaged board. No queue position until the engagement is defined.</div>
 <div class="blk "><b>Credential access bottlenecks on one person</b>Single human route to the vault. Needs a second named holder.</div>
-<div class="blk "><b>An agent content pipeline's auth is unaudited</b>It authenticates as something. Breaks silently at cutover if not found first.</div>
+<div class="blk "><b>An agent content pipeline's auth is unaudited</b>Not found in either known GitHub org — look wider before that client moves.</div>
+<div class="phd" style="border-top:1px solid var(--line)"><h3>Recently closed</h3><span class="tag uni" style="margin-left:auto">3</span></div>
+<div class="blk done"><b>&#10003; All client identities mapped <span class="when">19 Aug</span></b>Was the top blocker. 11 of 11 now known — Growth Archon 7, KAMS 3, Outrider 1.</div>
+<div class="blk done"><b>&#10003; Destination mail foundation is live <span class="when">19 Aug</span></b>DNS confirms the new domain already has Google MX, SPF, DKIM and DMARC at <code>p=none</code>. Phase 1 steps 2 and 3 are effectively done, and warm-up may already be under way.</div>
+<div class="blk done"><b>&#10003; Nobody is on Microsoft 365 <span class="when">19 Aug</span></b>DNS across all four estate domains shows Google Workspace everywhere except Growth Archon, which is Fastmail. Removes a whole branch of Phase 2 risk.</div>
 </div><div class="panel"><div class="phd"><h3>The seven decisions</h3><span class="tag stop" style="margin-left:auto">0 of 7</span></div>
 <div class="pitem"><span class="box"></span><span>Which Google Workspace tenant survives</span></div>
 <div class="pitem"><span class="box"></span><span>Fresh tenant, or absorb</span></div>
