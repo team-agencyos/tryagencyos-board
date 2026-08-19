@@ -1,0 +1,500 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TryAgencyOS Migration Board</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F4F6F7;--surface:#FFF;--surface2:#EAEEEF;--sunk:#E4E9EA;
+  --ink:#12171A;--ink2:#3C464B;--muted:#66727A;--line:#DCE2E4;--lineSoft:#E9EDEF;
+  --uni:#0E6F62;--uniSoft:#DCEDEA;--ok:#1E7A4C;--warn:#9A5B08;--warnSoft:#FAECD8;
+  --stop:#A3291A;--stopSoft:#F8E1DD;
+  --aos:#3F4FBF;--gar:#7B3F94;--kz:#B25C2E;--od:#2A6F92;
+  --shadow:0 1px 2px rgba(18,23,26,.05),0 10px 28px -20px rgba(18,23,26,.3);
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0E1315;--surface:#161C1F;--surface2:#1C2427;--sunk:#101619;
+  --ink:#E7ECEE;--ink2:#B6C0C4;--muted:#87959A;--line:#2A3438;--lineSoft:#212A2D;
+  --uni:#3FBCA6;--uniSoft:#12332E;--ok:#4FBE85;--warn:#D99B44;--warnSoft:#33260F;
+  --stop:#EC7461;--stopSoft:#3A1D18;
+  --aos:#8B96EE;--gar:#C08FD8;--kz:#DE8F5F;--od:#6FB2D4;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -22px rgba(0,0,0,.9);
+}}
+:root[data-theme="dark"]{
+  --paper:#0E1315;--surface:#161C1F;--surface2:#1C2427;--sunk:#101619;
+  --ink:#E7ECEE;--ink2:#B6C0C4;--muted:#87959A;--line:#2A3438;--lineSoft:#212A2D;
+  --uni:#3FBCA6;--uniSoft:#12332E;--ok:#4FBE85;--warn:#D99B44;--warnSoft:#33260F;
+  --stop:#EC7461;--stopSoft:#3A1D18;
+  --aos:#8B96EE;--gar:#C08FD8;--kz:#DE8F5F;--od:#6FB2D4;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -22px rgba(0,0,0,.9);
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;
+  line-height:1.6;margin:0;padding:0 20px 90px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;line-height:1.15;letter-spacing:-.022em;text-wrap:balance}
+h1{font-size:clamp(1.75rem,3.6vw,2.4rem);letter-spacing:-.032em}
+h2{font-size:1.35rem}h3{font-size:1rem;letter-spacing:-.012em}
+p{margin:0}a{color:var(--uni)}
+code{font-family:var(--mono);font-size:.85em;background:var(--surface2);padding:.08em .34em;border-radius:3px}
+.eyebrow{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono)}
+
+nav{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line);
+  margin:0 -20px 0;padding:0 20px}
+.navin{max-width:1000px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;align-items:center}
+nav a{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;
+  padding:13px 12px;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+nav a:hover{color:var(--ink)}
+nav a.on{color:var(--uni);border-bottom-color:var(--uni)}
+nav .brand{font-family:var(--display);font-weight:700;font-size:.85rem;margin-right:14px;white-space:nowrap}
+
+header{padding:40px 0 26px}
+.hdmeta{font-family:var(--mono);font-size:.72rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:12px}
+.hdmeta b{color:var(--ink2);font-weight:500}
+.dest{display:inline-block;font-family:var(--mono);font-size:.78rem;padding:5px 11px;border:1px solid var(--uni);
+  background:var(--uniSoft);color:var(--uni);border-radius:3px;font-weight:600;margin-top:14px}
+section{padding-top:46px;scroll-margin-top:56px}
+.sechd{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.sechd .n{font-size:.8rem;color:var(--muted);margin-left:auto;font-family:var(--mono)}
+.lede{color:var(--ink2);font-size:.96rem;margin-top:8px;max-width:70ch}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:14px 16px;
+  box-shadow:var(--shadow);border-left:3px solid var(--muted)}
+.stat.warn{border-left-color:var(--warn)}.stat.stop{border-left-color:var(--stop)}.stat.ok{border-left-color:var(--ok)}
+.stat .v{font-family:var(--display);font-weight:700;font-size:1.9rem;line-height:1.05;margin-top:6px;font-variant-numeric:tabular-nums}
+.stat .v small{font-size:1rem;color:var(--muted);font-weight:500}
+.stat .sub{font-size:.78rem;color:var(--muted);margin-top:2px}
+
+.two{display:grid;grid-template-columns:1fr 300px;gap:18px;margin-top:20px;align-items:start}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);overflow:hidden}
+.phd{padding:13px 17px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.blk{padding:12px 17px;font-size:.85rem;color:var(--ink2);border-left:3px solid var(--warn);background:var(--warnSoft)}
+.blk.high{border-left-color:var(--stop);background:var(--stopSoft)}
+.blk+.blk{border-top:1px solid var(--lineSoft)}
+.blk b{display:block;color:var(--ink);font-size:.87rem;margin-bottom:2px}
+.pitem{display:flex;gap:10px;padding:9px 17px;font-size:.85rem;color:var(--ink2)}
+.pitem+.pitem{border-top:1px solid var(--lineSoft)}
+.box{flex:none;width:12px;height:12px;margin-top:.3em;border:1px solid var(--muted);border-radius:2px}
+
+.estates{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+@media(max-width:760px){.estates{grid-template-columns:repeat(2,1fr)}}
+.est{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--muted);
+  border-radius:4px;padding:13px 15px;box-shadow:var(--shadow)}
+.est.aos{border-top-color:var(--aos)}.est.gar{border-top-color:var(--gar)}
+.est.kz{border-top-color:var(--kz)}.est.od{border-top-color:var(--od)}
+.est .nm{font-family:var(--display);font-weight:700;font-size:.95rem}
+.est .hd{font-size:.78rem;color:var(--muted);margin-top:4px}
+.converge{text-align:center;margin-top:14px;font-family:var(--mono);font-size:.8rem;color:var(--uni)}
+.converge .arw{display:block;color:var(--line);font-size:1.1rem;line-height:1}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow)}
+details+details{margin-top:9px}
+summary{cursor:pointer;padding:14px 18px;list-style:none;display:flex;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);color:var(--muted);margin-left:auto;font-size:1.05rem;flex:none}
+details[open] summary::after{content:"\2212";color:var(--uni)}
+summary:hover{background:var(--surface2)}
+summary:focus-visible{outline:2px solid var(--uni);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--lineSoft);background:var(--surface2)}
+.dbody{padding:16px 18px 20px}
+.stripe{width:3px;align-self:stretch;border-radius:2px;flex:none;margin:-14px 0;background:var(--muted)}
+.stripe.now{background:var(--uni)}.stripe.part{background:var(--warn)}.stripe.idle{background:var(--sunk)}
+.ptitle{font-family:var(--display);font-weight:700;font-size:1rem}
+.pmeta{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:2px}
+.tag{font-family:var(--mono);font-size:.63rem;font-weight:600;padding:3px 8px;border-radius:2px;
+  background:var(--surface2);color:var(--muted);white-space:nowrap}
+.tag.now{background:var(--uniSoft);color:var(--uni)}.tag.part{background:var(--warnSoft);color:var(--warn)}
+.tag.stop{background:var(--stopSoft);color:var(--stop)}.tag.uni{background:var(--uniSoft);color:var(--uni)}
+.tag.warn{background:var(--warnSoft);color:var(--warn)}
+
+.goal{color:var(--ink2);font-size:.93rem;padding-bottom:4px}
+ol.steps{margin:14px 0 0;padding:0;list-style:none;counter-reset:s}
+ol.steps li{position:relative;padding-left:36px;margin-bottom:13px;font-size:.93rem;color:var(--ink2)}
+ol.steps li::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:.1em;
+  font-family:var(--mono);font-size:.72rem;color:var(--uni);font-weight:600}
+ol.steps li b{color:var(--ink);font-weight:600}
+.fails{margin-top:16px;padding:13px 15px;background:var(--stopSoft);border-radius:3px}
+.fails ul{margin:8px 0 0;padding-left:16px}
+.fails li{font-size:.87rem;color:var(--ink2);margin-bottom:6px}
+.fails b{color:var(--ink)}
+.donew{margin-top:16px;padding:12px 15px;background:var(--surface2);border-radius:3px;font-size:.87rem;color:var(--ink2)}
+.donew .eyebrow{display:block;margin-bottom:4px;color:var(--uni)}
+.who{font-size:.87rem;color:var(--ink2);padding:9px 13px;background:var(--surface2);border-radius:3px}
+.who b{color:var(--ink)}
+
+.crow{display:grid;grid-template-columns:26px 78px 1fr 132px 150px 92px;gap:12px;align-items:center;
+  padding:11px 17px;border-bottom:1px solid var(--lineSoft);cursor:pointer;font-size:.9rem}
+.crow:hover{background:var(--surface2)}
+.crow:focus-visible{outline:2px solid var(--uni);outline-offset:-2px}
+.crow.hdr{cursor:default;background:var(--surface2);border-bottom:1px solid var(--line)}
+.crow.hdr>*{font-family:var(--mono);font-size:.63rem;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.crow.hdr:hover{background:var(--surface2)}
+@media(max-width:820px){.crow{grid-template-columns:24px 74px 1fr 96px}.c-hide{display:none}}
+.seq{font-family:var(--mono);font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.ccode{font-family:var(--mono);font-weight:700;font-size:.84rem}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex:none}
+.d-aos{background:var(--aos)}.d-gar{background:var(--gar)}.d-kz{background:var(--kz)}
+.d-od{background:var(--od)}.d-na{background:var(--muted);opacity:.4}
+.ident{font-family:var(--mono);font-size:.72rem;display:flex;align-items:center;gap:6px;color:var(--ink2)}
+.ident.na{color:var(--muted)}
+.bar{height:6px;background:var(--sunk);border-radius:3px;overflow:hidden;flex:1}
+.bar i{display:block;height:100%;background:var(--uni);opacity:.6}
+.sizecell{display:flex;align-items:center;gap:9px}
+.sizecell .n{font-family:var(--mono);font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums;min-width:26px;text-align:right}
+.cdet{display:none;padding:2px 17px 20px 121px;background:var(--sunk);border-bottom:1px solid var(--lineSoft)}
+@media(max-width:820px){.cdet{padding-left:40px}}
+.cdet.open{display:block}
+.cdet p{font-size:.88rem;color:var(--ink2);padding-top:12px}
+.stages{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.stage{font-family:var(--mono);font-size:.66rem;padding:5px 10px;border:1px solid var(--line);
+  border-radius:2px;color:var(--muted);background:var(--surface)}
+footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:.79rem;color:var(--muted)}
+</style></head><body>
+<nav><div class="navin"><span class="brand">Migration Board</span><a href="#overview">Overview</a><a href="#phases">Phases</a><a href="#queue">Client queue</a><a href="#playbooks">Playbooks</a></div></nav>
+<div class="wrap">
+<header><span class="eyebrow">Draft v0.1</span>
+<h1 style="margin-top:8px">Four estates into one</h1>
+<div class="hdmeta"><span><b>Snapshot</b> 2026-08-18</span><span><b>Owner</b> unassigned</span><span><b>Span</b> ~6 months</span><span><b>View</b> codes only</span></div>
+<div class="dest">&rarr; team@tryagencyos.ai</div></header>
+<section id="overview"><div class="sechd"><h2>Where this stands</h2></div>
+<p class="lede">A readiness board, not a progress board. Nothing has moved yet, and the numbers below are the reason. The rule underneath everything: <b>add alongside, verify by doing real work, dual-run, then retire</b> — never swap in one step.</p>
+<div class="stats">
+<div class="stat warn"><span class="eyebrow">Phase</span><div class="v">0<small>/8</small></div><div class="sub">Inventory — in progress</div></div>
+<div class="stat stop"><span class="eyebrow">Client identity known</span><div class="v">3<small>/12</small></div><div class="sub">9 still unmapped</div></div>
+<div class="stat stop"><span class="eyebrow">Decisions made</span><div class="v">0<small>/7</small></div><div class="sub">All seven gate Phase 1</div></div>
+<div class="stat stop"><span class="eyebrow">Open blockers</span><div class="v">6</div><div class="sub">2 high · 4 medium</div></div>
+</div>
+<div class="two"><div class="panel"><div class="phd"><h3>Open blockers</h3></div>
+<div class="blk high"><b>9 of 12 client identities unmapped</b>Holds up the entire Phase 5 queue. Highest-value task remaining.</div>
+<div class="blk high"><b>Is the third domain its own Workspace tenant?</b>If yes, Phase 2 is three migration runs instead of one — the biggest schedule variable in the plan.</div>
+<div class="blk "><b>5 clients have no lead assigned</b>Each needs a named owner to run the runbook and hold the client conversation.</div>
+<div class="blk "><b>One client's scope is unconfirmed</b>Untriaged board. Can't be sequenced until it's resolved.</div>
+<div class="blk "><b>Credential access bottlenecks on one person</b>Single human route to the vault. Needs a second named holder.</div>
+<div class="blk "><b>An agent content pipeline's auth is unaudited</b>It authenticates as something. Breaks silently at cutover if not found first.</div>
+</div><div class="panel"><div class="phd"><h3>The seven decisions</h3><span class="tag stop" style="margin-left:auto">0 of 7</span></div>
+<div class="pitem"><span class="box"></span><span>Which Google Workspace tenant survives</span></div>
+<div class="pitem"><span class="box"></span><span>Fresh tenant, or absorb</span></div>
+<div class="pitem"><span class="box"></span><span>What happens to the old domains</span></div>
+<div class="pitem"><span class="box"></span><span>Brand policy per client</span></div>
+<div class="pitem"><span class="box"></span><span>Legal entity &amp; contracts <i>(longest lead time — ask first)</i></span></div>
+<div class="pitem"><span class="box"></span><span>Who owns the migration</span></div>
+<div class="pitem"><span class="box"></span><span>Change-freeze windows</span></div>
+</div></div>
+<div class="estates">
+<div class="est aos"><div class="nm">Agency OS</div><div class="hd">AgencyOS-Clients org · vault</div></div>
+<div class="est gar"><div class="nm">Growth Archon</div><div class="hd">two client relationships</div></div>
+<div class="est kz"><div class="nm">Kas &amp; Z</div><div class="hd">three people</div></div>
+<div class="est od"><div class="nm">Outrider Digital</div><div class="hd">one person · one client</div></div>
+</div><div class="converge"><span class="arw">&darr;</span>team@tryagencyos.ai</div>
+</section>
+<section id="phases"><div class="sechd"><h2>The eight phases</h2><span class="n">step by step</span></div>
+<p class="lede">Phases 0–2 are strictly sequential. Phases 3, 4 and 6 run as parallel tracks with separate owners. No phase starts until the previous one's <i>done when</i> is actually true. Open any phase for its steps.</p><div style="margin-top:20px">
+<details id="p0" open><summary><span class="stripe now"></span><span><span class="ptitle">Inventory &amp; decisions</span><span class="pmeta">Phase 0 &middot; Weeks 1–3</span></span><span class="tag now">IN PROGRESS</span></summary><div class="dbody">
+<p class="goal">Before you move anything, you need to know what exists. Most merger pain comes from an account nobody remembered until it broke.</p><ol class="steps">
+<li><b>Build the master register.</b> One row per account. It is the single source of truth for the whole migration and stays live until Phase 8.</li>
+<li><b>Sweep both estates.</b> Password manager exports, Workspace admin user and app lists, 24 months of card statements (this finds the subscriptions nobody remembers), OAuth grants, every client folder.</li>
+<li><b>Flag single-point-of-failure accounts.</b> Any account where one person can log in, or the recovery email is personal, or 2FA sits on one phone.</li>
+<li><b>Map client → platforms.</b> Every platform we touch and which identity holds it. This becomes the Phase 5 queue.</li>
+<li><b>Record verification dependencies.</b> Which Search Console properties are verified by which method, which domains verified in which Business Manager, which Ads accounts linked to which manager.</li>
+<li><b>Make the seven decisions</b> and write the answers down.</li>
+</ol><div class="donew"><span class="eyebrow">Done when</span>Every account appears in the register with an owner and a migration method, the seven decisions are recorded, and the SPOF list has been reviewed.</div>
+</div></details>
+<details id="p1"><summary><span class="stripe part"></span><span><span class="ptitle">Foundation</span><span class="pmeta">Phase 1 &middot; Weeks 3–5</span></span><span class="tag part">PARTLY DONE</span></summary><div class="dbody">
+<p class="goal">Stand up the destination properly. Everything after this depends on the new domain being a real, trusted, well-secured identity — not one someone bought last week.</p><ol class="steps">
+<li><b>Consolidate the registrar.</b> All domains under one company-owned account. Registrar lock and auto-renew on. Admin contact is a role address two people can read.</li>
+<li><b>Attach the domain to the surviving tenant.</b> If it sits in the other tenant, remove it there first — a domain cannot exist in two tenants at once.</li>
+<li><b>Configure mail authentication before sending anything.</b> SPF, DKIM per sending source, DMARC at <code>p=none</code> with a report address. Review two weeks, fix failures, then step to quarantine.</li>
+<li><b>Start deliverability warm-up now.</b> A cold domain emailing 200 clients lands in spam, or reads as phishing. Begin low-volume sending in week 3 so there is 4–6 weeks of reputation before clients see it in Phase 5.</li>
+<li><b>One password manager, one vault structure.</b> Shared vault per client plus internal. Merge every estate's vault, deduplicate, rotate anything ever shared by export or chat.</li>
+<li><b>Security baseline.</b> Enforced 2FA, hardware keys or an app (not SMS) for admins, recovery codes in the vault with at least two named holders, documented break-glass account.</li>
+<li><b>Naming convention.</b> Personal, role and client-access addresses decided and written down.</li>
+</ol><div class="donew"><span class="eyebrow">Done when</span>DMARC reports clean, 2FA enforced for everyone, credentials in one vault, and the domain has been sending real mail for two weeks.</div>
+</div></details>
+<details id="p2"><summary><span class="stripe idle"></span><span><span class="ptitle">Identity &amp; mail</span><span class="pmeta">Phase 2 &middot; Weeks 5–9</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<p class="goal">Get every human onto the new address without losing a single inbound message, calendar invite, or thread of history.</p><ol class="steps">
+<li><b>Create new addresses as additions.</b> Everyone gets the new address while the old one still works normally.</li>
+<li><b>Alias, don't redirect.</b> Attach legacy domains as secondary domains so every old address becomes an alias into the same mailbox. Nothing bounces.</li>
+<li><b>Migrate the absorbed tenants' mailboxes.</b> Note the plural — confirm how many tenants actually exist first. Run one pilot user end to end before touching the rest.</li>
+<li><b>Migrate shared Drive content</b> into company-owned shared drives. This is the moment to fix files-owned-by-whoever-made-them, permanently.</li>
+<li><b>Rebuild recurring calendar invites.</b> Editing the organiser on a live series is unreliable and silently drops external guests.</li>
+<li><b>Switch default send-from</b> for everyone on the same day. Keep the old address as a send-as option for existing threads.</li>
+<li><b>One signature</b>, applied centrally. Draft the legacy auto-replies now but leave them off until Phase 7.</li>
+</ol><div class="donew"><span class="eyebrow">Done when</span>Everyone has worked from the new address for 10 straight business days, nothing has bounced, and a test to each retired address arrives in the right mailbox.</div>
+</div></details>
+<details id="p3"><summary><span class="stripe idle"></span><span><span class="ptitle">Internal operations</span><span class="pmeta">Phase 3 &middot; Weeks 8–12</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<p class="goal">One place to talk, one place to plan, one place to track clients. Where the companies actually start behaving as one.</p><ol class="steps">
+<li><b>Slack.</b> Pick the surviving workspace, export the other for archive, recreate channels under one convention, re-establish client Connect channels.</li>
+<li><b>Docs.</b> One workspace. Import the other side into a clearly marked Legacy section rather than interleaving on day one. Reorganise after, not during.</li>
+<li><b>Project management.</b> Migrate active projects only. Archive closed work in place and link to it.</li>
+<li><b>CRM.</b> Deduplicate companies and people <i>before</i> importing, agree one pipeline definition, and keep which estate each relationship came from as a field.</li>
+<li><b>Reconnect integrations under the new identity.</b> Anything authorised with an old address dies silently when that account retires.</li>
+<li><b>Merge the SOPs.</b> Where both had a process, pick one. Where one did, adopt it.</li>
+</ol><div class="donew"><span class="eyebrow">Done when</span>Exactly one place for each function, all client Connect channels live in the surviving workspace, no duplicate companies in the CRM.</div>
+</div></details>
+<details id="p4"><summary><span class="stripe part"></span><span><span class="ptitle">Engineering estate</span><span class="pmeta">Phase 4 &middot; Weeks 10–14</span></span><span class="tag part">PARTLY DONE</span></summary><div class="dbody">
+<p class="goal">One GitHub org, one Vercel team, one set of secrets. Expect breakage — rehearse it on something unimportant.</p><ol class="steps">
+<li><b>Choose the surviving org</b> and set up teams that mirror how you actually work before moving anything in.</li>
+<li><b>Transfer repos one at a time, starting with an unimportant one.</b> Transfer carries issues, PRs and history. Expect to rebuild branch protection, Actions secrets and variables, environments, deploy keys, webhooks, and app installations. Write down what actually broke — that list is the checklist for the rest.</li>
+<li><b>Fix references after each transfer.</b> Redirects work but are not a foundation: remotes, submodules, registry paths, image references, docs links, any CI config naming the old org.</li>
+<li><b>Consolidate hosting.</b> Transfer projects, then confirm environment variables, custom domains and the Git integration on each. Lower DNS TTLs 24–48h before moving a production domain; move one low-traffic project first.</li>
+<li><b>Rotate every secret the retiring estate could see.</b> A merger is the right moment; it will never be cheaper.</li>
+<li><b>Re-point CI/CD, monitoring and alerting</b> — then confirm a test alert actually arrives.</li>
+</ol><div class="donew"><span class="eyebrow">Done when</span>Every active repo builds and deploys from the new org, no pipeline references the old one, and all exposed secrets are rotated.</div>
+</div></details>
+<details id="p5"><summary><span class="stripe idle"></span><span><span class="ptitle">Client platform access</span><span class="pmeta">Phase 5 &middot; Weeks 12–24</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<p class="goal">The phase that can cost you a client. One client per week at most, and always talk to them before touching their accounts.</p><ol class="steps">
+<li><b>Sequence by risk, lowest first.</b> Start small and forgiving. Learn what breaks. Work up to the largest accounts last.</li>
+<li><b>Announce before you touch anything</b>, from the <i>old</i> address, signed by a person they know, naming exactly which addresses and account IDs will contact them. Skip this and your access requests are indistinguishable from an attack.</li>
+<li><b>Get written acknowledgement</b> that the new address is the official contact. One line in a reply is enough.</li>
+<li><b>Work the platform playbooks</b> for that one client — add everywhere before removing anything.</li>
+<li><b>Dual-run 60–90 days</b> with both identities live, working exclusively from the new one so gaps surface while the net is still there.</li>
+<li><b>Remove old access</b>, confirm removal by attempting it, and mark the client complete.</li>
+</ol><div class="donew"><span class="eyebrow">Done when</span>Every client has completed the runbook, dual-run has elapsed, and no client work has depended on a legacy identity for 30 days.</div>
+</div></details>
+<details id="p6"><summary><span class="stripe idle"></span><span><span class="ptitle">Vendors &amp; billing</span><span class="pmeta">Phase 6 &middot; Weeks 16–20</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<p class="goal">Two companies means two of most things. This phase usually pays for the whole migration.</p><ol class="steps">
+<li><b>List every recurring charge</b> from 24 months of statements on both sides. Anything charging you that isn't in the register is forgotten or unowned.</li>
+<li><b>Deduplicate.</b> Pick one, migrate the data, cancel the other <i>at renewal</i> rather than mid-term.</li>
+<li><b>Re-point billing contacts and payment methods</b> to the surviving entity and a role address.</li>
+<li><b>Move account ownership off individuals.</b> Vendor accounts on a personal address are the most common thing to break when someone leaves.</li>
+<li><b>Consolidate accounting, invoicing and payroll</b> under the surviving entity.</li>
+<li><b>Update insurance, certifications and partner statuses</b> to the new entity and domain.</li>
+</ol><div class="donew"><span class="eyebrow">Done when</span>One subscription per function, no charges to an unowned account, one entity invoicing from one system.</div>
+</div></details>
+<details id="p7"><summary><span class="stripe idle"></span><span><span class="ptitle">Brand &amp; external presence</span><span class="pmeta">Phase 7 &middot; Weeks 20–24</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<p class="goal">Now the plumbing works, make the outside world consistent. Earlier creates a public brand the internal systems can't back up.</p><ol class="steps">
+<li><b>Website</b> on the new domain, with 301s from legacy domains page by page — not a blanket redirect to the homepage. Legacy domains keep resolving indefinitely.</li>
+<li><b>Social, directories and listings</b> — company pages, business profiles, directories, partner listings.</li>
+<li><b>Case studies and collateral</b> rebranded, with a line acknowledging work delivered under the legacy names. It preserves the credibility rather than erasing it.</li>
+<li><b>Turn on the legacy auto-replies</b> drafted in Phase 2.</li>
+<li><b>Public announcement</b> — only after every client has heard directly. Clients should never learn about their agency's merger from social media.</li>
+</ol><div class="donew"><span class="eyebrow">Done when</span>Every public surface carries one brand, legacy URLs redirect to real equivalents, inbound leads land at the new address.</div>
+</div></details>
+<details id="p8"><summary><span class="stripe idle"></span><span><span class="ptitle">Decommission &amp; archive</span><span class="pmeta">Phase 8 &middot; Week 36+</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<p class="goal">The temptation is to do this early to save money. Don't. Keeping things alive is trivially cheap against one unrecoverable account.</p><ol class="steps">
+<li><b>Freeze, don't delete.</b> Retired mailboxes become archived or suspended accounts with forwarding intact, for at least a year.</li>
+<li><b>Export before shutting anything down</b> — Slack, PM tool, CRM, Drive — into one documented archive location.</li>
+<li><b>Keep legacy domains renewed permanently.</b> An expired domain that once received client mail is a genuine security problem.</li>
+<li><b>Close the retiring tenant</b> only after data is exported, verified readable, and nothing forwards through it.</li>
+<li><b>Final access audit.</b> No legacy identity retains access anywhere, every account has a named owner.</li>
+<li><b>Retire the register</b> into a quarterly access review. This is the lasting value of the whole exercise.</li>
+</ol><div class="donew"><span class="eyebrow">Done when</span>Every register row reads Retired, exports are verified readable, and a quarterly access review is scheduled with an owner.</div>
+</div></details>
+</div></section>
+<section id="queue"><div class="sechd"><h2>Phase 5 queue</h2><span class="n">12 clients</span></div>
+<p class="lede">Ordered lowest blast radius first — learn where being wrong is cheap, then apply it where being wrong is expensive. Board size is the proxy for how much live work there is to break. Click a row for its notes and runbook stages.</p>
+<div class="panel" style="margin-top:20px">
+<div class="crow hdr"><span>#</span><span>Client</span><span class="c-hide">Tier</span><span class="c-hide">Lead</span><span>Holds access</span><span class="c-hide">Board</span></div>
+<div class="crow" data-i="0" tabindex="0" role="button" aria-expanded="false"><span class="seq">1</span><span class="ccode">SV</span><span class="tag uni c-hide">Rehearsal</span><span class="c-hide tag">none set</span><span class="ident "><span class="dot d-od"></span>Outrider</span><span class="sizecell c-hide"><span class="bar"><i style="width:3%"></i></span><span class="n">8</span></span></div>
+<div class="cdet" data-d="0"><p>Smallest board and the only confirmed identity. The rehearsal — expect it to take three times as long as planned and to surface things this plan doesn't mention. That's the point.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="1" tabindex="0" role="button" aria-expanded="false"><span class="seq">2</span><span class="ccode">PFO</span><span class="tag muted c-hide">Build-up</span><span class="c-hide tag">assigned</span><span class="ident na"><span class="dot d-na"></span>unknown</span><span class="sizecell c-hide"><span class="bar"><i style="width:3%"></i></span><span class="n">13</span></span></div>
+<div class="cdet" data-d="1"><p>Mostly wrapped work. No modules set, so confirm scope with the lead first — thin boards can hide undocumented work.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="2" tabindex="0" role="button" aria-expanded="false"><span class="seq">3</span><span class="ccode">VITAL</span><span class="tag muted c-hide">Build-up</span><span class="c-hide tag">none set</span><span class="ident na"><span class="dot d-na"></span>unknown</span><span class="sizecell c-hide"><span class="bar"><i style="width:3%"></i></span><span class="n">15</span></span></div>
+<div class="cdet" data-d="2"><p>Early-stage, no modules. Confirm scope before starting.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="3" tabindex="0" role="button" aria-expanded="false"><span class="seq">4</span><span class="ccode">TPP</span><span class="tag muted c-hide">Build-up</span><span class="c-hide tag">assigned</span><span class="ident na"><span class="dot d-na"></span>unknown</span><span class="sizecell c-hide"><span class="bar"><i style="width:7%"></i></span><span class="n">33</span></span></div>
+<div class="cdet" data-d="3"><p>Assigned lead, known quantity. Has an Access &amp; Tracking module — check what it already covers before duplicating work.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="4" tabindex="0" role="button" aria-expanded="false"><span class="seq">5</span><span class="ccode">COD</span><span class="tag muted c-hide">Build-up</span><span class="c-hide tag">assigned</span><span class="ident na"><span class="dot d-na"></span>unknown</span><span class="sizecell c-hide"><span class="bar"><i style="width:9%"></i></span><span class="n">43</span></span></div>
+<div class="cdet" data-d="4"><p>Client-facing board only. The related dashboards are internal ops and move in Phase 3, not here.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="5" tabindex="0" role="button" aria-expanded="false"><span class="seq">6</span><span class="ccode">TFP</span><span class="tag warn c-hide">Careful</span><span class="c-hide tag">assigned</span><span class="ident na"><span class="dot d-na"></span>unknown</span><span class="sizecell c-hide"><span class="bar"><i style="width:12%"></i></span><span class="n">61</span></span></div>
+<div class="cdet" data-d="5"><p>Went live 2026-08-06. Let the launch settle before touching access.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="6" tabindex="0" role="button" aria-expanded="false"><span class="seq">7</span><span class="ccode">ABS</span><span class="tag warn c-hide">Careful</span><span class="c-hide tag">none set</span><span class="ident "><span class="dot d-gar"></span>Growth Archon</span><span class="sizecell c-hide"><span class="bar"><i style="width:16%"></i></span><span class="n">82</span></span></div>
+<div class="cdet" data-d="6"><p>First Growth Archon client — deliberately ahead of the larger one on the same identity. Far less at stake if the pattern is wrong, and it carries its own GitHub org to fold in.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="7" tabindex="0" role="button" aria-expanded="false"><span class="seq">8</span><span class="ccode">THERA</span><span class="tag warn c-hide">Careful</span><span class="c-hide tag">none set</span><span class="ident na"><span class="dot d-na"></span>unknown</span><span class="sizecell c-hide"><span class="bar"><i style="width:17%"></i></span><span class="n">84</span></span></div>
+<div class="cdet" data-d="7"><p>Brief still incomplete. Finish the project Pages before migrating anything.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="8" tabindex="0" role="button" aria-expanded="false"><span class="seq">9</span><span class="ccode">SBD</span><span class="tag warn c-hide">Careful</span><span class="c-hide tag">none set</span><span class="ident na"><span class="dot d-na"></span>unknown</span><span class="sizecell c-hide"><span class="bar"><i style="width:29%"></i></span><span class="n">144</span></span></div>
+<div class="cdet" data-d="8"><p>Busiest active board in the agency at 74 open items. Needs a genuinely quiet window — and a lead assigned first.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="9" tabindex="0" role="button" aria-expanded="false"><span class="seq">10</span><span class="ccode">CPG</span><span class="tag warn c-hide">Last</span><span class="c-hide tag">assigned</span><span class="ident na"><span class="dot d-na"></span>unknown</span><span class="sizecell c-hide"><span class="bar"><i style="width:79%"></i></span><span class="n">392</span></span></div>
+<div class="cdet" data-d="9"><p>Second largest. Campaign tracks rather than service lines, so the scope read is different.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="10" tabindex="0" role="button" aria-expanded="false"><span class="seq">11</span><span class="ccode">RED</span><span class="tag warn c-hide">Last</span><span class="c-hide tag">assigned</span><span class="ident "><span class="dot d-gar"></span>Growth Archon</span><span class="sizecell c-hide"><span class="bar"><i style="width:100%"></i></span><span class="n">498</span></span></div>
+<div class="cdet" data-d="10"><p>Biggest and most mature, with an agent-driven content pipeline whose authentication hasn't been audited. Last on purpose — by the time we reach it the process should be dull.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+<div class="crow" data-i="11" tabindex="0" role="button" aria-expanded="false"><span class="seq">&mdash;</span><span class="ccode">AOC</span><span class="tag stop c-hide">Blocked</span><span class="c-hide tag">assigned</span><span class="ident na"><span class="dot d-na"></span>unknown</span><span class="sizecell c-hide"><span class="bar"><i style="width:3%"></i></span><span class="n">17</span></span></div>
+<div class="cdet" data-d="11"><p>Untriaged board, unconfirmed scope. No queue position until the engagement is defined.</p><div class="stages"><span class="stage">1 Announce</span><span class="stage">2 Add access</span><span class="stage">3 Verify</span><span class="stage">4 Dual-run 60–90d</span><span class="stage">5 Retire old</span></div></div>
+</div></section>
+<section id="playbooks"><div class="sechd"><h2>Playbooks</h2><span class="n">how, not what</span></div>
+<p class="lede">The phases say what moves. These say how — the actual steps, who has to click, and the specific ways each platform goes wrong. Read <i>the general model</i> once; work the rest per client.</p><div style="margin-top:20px">
+<details id="model"><summary><span class="stripe idle"></span><span class="ptitle">The general model</span><span class="tag">Read this first</span></summary><div class="dbody">
+<div class="who"><b>Who can act:</b> Everyone, once.</div><ol class="steps">
+<li><b>Work out which of three shapes the access is.</b> <i>Agency link</i> — our organisation is linked to their asset (Ads manager, Meta Partner, Shopify collaborator); both old and new can coexist, client approves. <i>Named-user grant</i> — an email holds a role (GA4, Search Console, GTM, CMS); we self-serve if we hold admin. <i>Ownership</i> — the asset belongs to an account (domains, pixels, GA accounts, repos); that's title, not access.</li>
+<li><b>Hunt for ownership dressed up as access.</b> A client's pixel inside our Business Manager, their GA property inside our Analytics account, their domain inside our registrar login. These look like access and are actually us holding their asset. Find them in Phase 0, not on migration day.</li>
+<li><b>Establish who can act.</b> We hold admin → self-serve. Client holds admin → they must click, so make the ask unmistakably legitimate. Nobody's sure → stop and find out; this is the state that produces lockouts.</li>
+<li><b>Then the four beats.</b> Add alongside → verify by doing real work → dual-run 60–90 days → retire and confirm removal.</li>
+<li><b>Order within a client, lowest consequence first:</b> read-only and reporting → analytics and measurement (breaks visibility, recoverable) → advertising and spend (breaks money, live) → production and publishing (breaks their site) → commercial and billing (breaks getting paid). Never start at the bottom because it looks administrative.</li>
+</ol>
+<div class="fails"><span class="eyebrow" style="color:var(--stop)">How it goes wrong</span><ul>
+<li>An accepted invite proves nothing — permissions are frequently granted at the wrong level and look fine until someone tries to work.</li>
+</ul></div>
+</div></details>
+<details id="dns"><summary><span class="stripe idle"></span><span class="ptitle">Domains &amp; DNS</span><span class="tag">Most destructive</span></summary><div class="dbody">
+<div class="who"><b>Who can act:</b> Depends who owns the domain. Classify every one before touching any.</div><ol class="steps">
+<li><b>Classify first.</b> Agency-owned → consolidate into one company account. Client-owned but we hold the login → that's ownership, decide with the client. Client-owned and they hold it → document who to reach urgently.</li>
+<li><b>Understand the split:</b> registration is who the domain is rented from; DNS hosting is which nameservers answer for it. Transferring registration does <i>not</i> move the zone. Move DNS first, registration second, never the same day.</li>
+<li><b>Export the complete current zone</b> — A, AAAA, CNAME, MX, TXT, SRV, CAA. This is your rollback.</li>
+<li><b>Work out what every TXT record does</b> before assuming any is stale. They hold SPF, DKIM, DMARC, site verification and sending-domain proofs. Deleting one 'unused' record can unverify Search Console weeks later with no obvious cause.</li>
+<li><b>Recreate the zone</b> at the new provider exactly, record for record. Don't tidy it yet.</li>
+<li><b>Lower TTL to 300s and wait out the old TTL.</b> If it was 24 hours, you wait 24 hours. This is what makes the switch reversible in minutes.</li>
+<li><b>Query the new nameservers directly before switching</b> — especially MX.</li>
+<li><b>Switch nameservers, then watch 24–48 hours.</b> Site loads, mail delivers both ways, DNS-based verifications still read verified. Raise TTLs once stable.</li>
+<li><b>Only then transfer registration.</b> Check the 60-day locks, unlock, disable privacy temporarily, confirm the registrant email is one you can read, get the auth code, initiate at the gaining registrar, approve, then re-lock and set auto-renew.</li>
+</ol>
+<div class="fails"><span class="eyebrow" style="color:var(--stop)">How it goes wrong</span><ul>
+<li><b>Email dies silently</b> — nameservers changed without MX copied. Nobody notices for hours.</li>
+<li><b>Site down a full day</b> — TTL was 24h and the switch was wrong.</li>
+<li><b>A platform quietly unverifies</b> — a TXT record wasn't carried over.</li>
+<li><b>Transfer approval never arrives</b> — registrant email is unread or privacy-proxied.</li>
+<li><b>Domain expires mid-migration</b> — auto-renew was on the old account's card.</li>
+</ul></div>
+</div></details>
+<details id="gsc"><summary><span class="stripe idle"></span><span class="ptitle">Google Search Console</span><span class="tag">Highest risk</span></summary><div class="dbody">
+<div class="who"><b>Who can act:</b> Us, if our identity is a verified owner. Otherwise the client adds us first.</div><ol class="steps">
+<li><b>Understand the two layers.</b> A <i>verified owner</i> proved control through a method — DNS TXT, HTML file, meta tag, an Analytics link or a Tag Manager link. Everyone else was granted access <i>by</i> a verified owner and hangs off it. The question is never who has access, it's whose verification is holding the property up.</li>
+<li><b>Know that verification chains into other systems.</b> Verified via Analytics → removing that GA access unverifies Search Console. Via Tag Manager → same. Via an HTML file → a site rebuild kills it. Via DNS TXT → survives all of it. That's why DNS is the answer.</li>
+<li><b>Before anything: open Settings → Ownership verification on every property.</b> Record who the verified owners are and which method each used, and note Domain properties versus URL-prefix properties. Clients usually have several accumulated over the years.</li>
+<li><b>Create or claim a Domain property</b> for the root domain under the new identity and verify it with a <b>DNS TXT record</b> — added <i>in addition to</i> existing verification records, never replacing one. This is the durable anchor: independent of the site, of GA, of GTM, of any other user.</li>
+<li><b>Add the new identity as owner on every existing URL-prefix property</b> too, so historical data stays reachable at the granularity their reports use.</li>
+<li><b>Verify by doing real work</b> — pull a performance report, submit a sitemap, run a URL inspection.</li>
+<li><b>Dual-run.</b> Search Console data is property-level, not user-level, so nothing is lost by both identities being present. There is no cost to patience here.</li>
+<li><b>Remove the old identity last</b>, one property at a time, re-checking verification after each removal.</li>
+</ol>
+<div class="fails"><span class="eyebrow" style="color:var(--stop)">How it goes wrong</span><ul>
+<li><b>Everyone loses access at once</b> — the only verified owner was removed and all delegated owners cascaded off.</li>
+<li><b>Unverified weeks later</b> — verification ran through a GA or GTM link that a different playbook removed.</li>
+<li><b>Unverified after a site launch</b> — HTML-file verification, and the rebuild dropped the file.</li>
+<li><b>New property with no history</b> — someone created a replacement instead of adding a user. Data does not backfill.</li>
+<li><b>Only the www property moved</b> — the others were never listed.</li>
+</ul></div>
+</div></details>
+<details id="ga4"><summary><span class="stripe idle"></span><span class="ptitle">Google Analytics (GA4)</span><span class="tag">Ownership question</span></summary><div class="dbody">
+<div class="who"><b>Who can act:</b> Us, if we hold Administrator. Editor is not enough to manage users.</div><ol class="steps">
+<li><b>Answer the ownership question first: whose Analytics account is the data in?</b> If the property sits in an agency account, the client's history is ours, not theirs — that's ownership, and it's live in a merger because 'which agency account' is exactly what's changing. If it sits in a personal Google account, fix it immediately; it leaves with the person.</li>
+<li><b>Check whether admin is held at account or property level.</b> They're separate screens and it's easy to grant the wrong one.</li>
+<li><b>List every property in scope</b> — clients often have a legacy Universal property and test properties alongside GA4.</li>
+<li><b>Note existing product links</b> — Ads, Search Console, BigQuery export, Merchant Center. These depend on the linking user having rights in <i>both</i> products.</li>
+<li><b>Admin → Account (or Property) access management → add the new identity as Administrator</b>, at the level matching the old identity so you don't quietly reduce scope.</li>
+<li><b>Verify by opening the Admin section</b>, not just a report. Seeing data but not Admin means the role is wrong.</li>
+<li><b>Re-check product links after adding</b> — an Ads link created by a user who later loses Ads access can stop passing data.</li>
+<li><b>Dual-run, then remove the old identity.</b> GA4 refuses to remove the last Administrator — treat a refusal as a signal that your new grant didn't apply where you thought.</li>
+</ol>
+<div class="fails"><span class="eyebrow" style="color:var(--stop)">How it goes wrong</span><ul>
+<li><b>Can see reports, can't administer</b> — granted at property level when the old access was account level, or Editor instead of Administrator.</li>
+<li><b>Ads ↔ GA4 link stops passing conversions</b> — tied to a user who lost Ads access.</li>
+<li><b>A property gets missed</b> — usually a legacy one still referenced in reports.</li>
+<li><b>BigQuery export breaks</b> — the linking user or service account changed.</li>
+</ul></div>
+</div></details>
+<details id="ads"><summary><span class="stripe idle"></span><span class="ptitle">Google Ads</span><span class="tag">Conversion trap</span></summary><div class="dbody">
+<div class="who"><b>Who can act:</b> Client must approve the new manager link. We can only send the request.</div><ol class="steps">
+<li><b>Check conversion action ownership before anything else.</b> Goals → Conversions → Summary, and look at the owning account of each action. Agencies often define conversions at manager level and share them down. If the client's conversions belong to the <i>old</i> manager account, unlinking it stops conversions recording — Smart Bidding then optimises against nothing and performance degrades over days rather than failing loudly.</li>
+<li><b>Check what else lives at manager level</b> — shared budgets, negative keyword lists, audiences, scripts.</li>
+<li><b>Get the 10-digit customer ID</b> and list current manager links under Admin → Access and security → Managers.</li>
+<li><b>Check billing.</b> If we're billed and rebill the client, changing entity affects the payment profile and possibly tax details. If the client is billed directly, this is much simpler.</li>
+<li><b>Send the link request from the surviving manager account</b> — and tell the client it's coming, naming the manager ID so they can match it. An unexplained manager request is indistinguishable from an account takeover, and Google warns users about exactly this.</li>
+<li><b>Client approves</b>, then <b>verify with a real reversible edit</b> — a bid modifier, pause and unpause an ad group, add a negative keyword. Reading isn't proof of edit rights.</li>
+<li><b>Leave both managers linked through the dual-run.</b> Ads supports multiple managers on one account — that is the safety net.</li>
+<li><b>Migrate anything the old manager owned</b> and confirm the client account is recording conversions on the new setup across at least a week of real traffic.</li>
+<li><b>Remove the old manager link last.</b></li>
+</ol>
+<div class="fails"><span class="eyebrow" style="color:var(--stop)">How it goes wrong</span><ul>
+<li><b>Performance decays over a week</b> — conversions belonged to the old manager account and stopped recording on unlink.</li>
+<li><b>Client refuses the request</b> — it arrived unannounced and looked like a scam. Correctly refused.</li>
+<li><b>Campaigns pause on billing failure</b> — payment profile tied to the retiring entity.</li>
+<li><b>Lost access entirely</b> — old manager removed before the new one was approved.</li>
+</ul></div>
+</div></details>
+<details id="meta"><summary><span class="stripe idle"></span><span class="ptitle">Meta Business Manager</span><span class="tag">Per-asset</span></summary><div class="dbody">
+<div class="who"><b>Who can act:</b> Client adds our Business Manager as a Partner and assigns each asset.</div><ol class="steps">
+<li><b>Use Partner access, business to business</b> — not adding our people as users inside their Business Manager. Partner access is the only model that survives staff changes and a merger cleanly.</li>
+<li><b>Check pixel ownership first.</b> If the pixel was created inside <i>our</i> Business Manager, the client's site is firing our pixel and the audience and conversion history belong to us. Pixel ownership is effectively not transferable — the practical remedy is a new dataset and re-tagging, which loses historical audience accumulation. Same question for the catalog and sometimes the Page.</li>
+<li><b>Send our Business Manager ID plus an explicit asset list.</b> Never say 'the usual access' — list it.</li>
+<li><b>Client: Business Settings → Partners → Add Partner → enter our BM ID</b>, then assign each asset individually.</li>
+<li><b>Assets are granted one by one</b>, and each is a separate thing to forget: ad account, Facebook Page, Instagram account, pixel/dataset, catalog, WhatsApp, domain verification. The pixel and catalog are the ones most often missed.</li>
+<li><b>Verify every asset individually from our side</b> — open the ad account and make a reversible edit, open Events Manager and confirm the pixel is receiving events, open the catalog and confirm items load. A Partner connection can exist with almost nothing shared through it.</li>
+<li><b>Check payment methods and System Users.</b> A payment method on the retiring business stops spend when it lapses; System User tokens are tied to a business and break silently.</li>
+<li><b>Dual-run, then the client removes the old Partner.</b></li>
+</ol>
+<div class="fails"><span class="eyebrow" style="color:var(--stop)">How it goes wrong</span><ul>
+<li><b>Partner added, nothing works</b> — the connection exists but assets were never assigned.</li>
+<li><b>Retargeting audiences empty</b> — the pixel belonged to the retiring business.</li>
+<li><b>Shopping ads break</b> — catalog never shared.</li>
+<li><b>Reporting integration dies</b> — System User token tied to the old business.</li>
+<li><b>Client can't find the settings</b> — Business Settings is genuinely hard to navigate. This is the platform most worth a 15-minute screen-share.</li>
+</ul></div>
+</div></details>
+<details id="gtm"><summary><span class="stripe idle"></span><span class="ptitle">Tag Manager &amp; Merchant Center</span><span class="tag">Publish rights</span></summary><div class="dbody">
+<div class="who"><b>Who can act:</b> Us, if we hold account-level user management.</div><ol class="steps">
+<li><b>Tag Manager: account and container permissions are separate.</b> Account access lets you see the container list; container access is what lets you work. Granting only account access produces someone who can see everything and change nothing.</li>
+<li><b>Publish rights are separate again.</b> Roles run Read → Edit → Approve → Publish. Someone with Edit can build a change and not ship it — you'll find out during an urgent tracking fix.</li>
+<li><b>Verify by actually publishing</b> a trivial change. It's the only proof that counts.</li>
+<li><b>Never create a new container.</b> The container ID is embedded in the client's site; a new one means a code change and the loss of all version history.</li>
+<li><b>Check whether GTM verifies Search Console</b> before removing GTM access — move Search Console to DNS verification first.</li>
+<li><b>Merchant Center: Settings → People and access</b>, match the old role exactly.</li>
+<li><b>Verify the Ads link is still active and the feed still fetching</b> — check last fetch time and error count <i>after</i> the change, then daily for a week.</li>
+<li><b>Check the website claim status</b>, which often runs through the same Search Console verification chain. Sequence Search Console before Merchant Center.</li>
+</ol>
+<div class="fails"><span class="eyebrow" style="color:var(--stop)">How it goes wrong</span><ul>
+<li><b>Feed stops and listings drop</b> — a fetch credential or claim tied to the retiring identity.</li>
+<li><b>Shopping campaigns stop serving</b> — the Ads link silently dropped.</li>
+<li><b>Server-side containers overlooked</b> — they have their own hosting and permissions.</li>
+</ul></div>
+</div></details>
+<details id="rest"><summary><span class="stripe idle"></span><span class="ptitle">Shopify, CMS, email &amp; cloud</span><span class="tag">The long tail</span></summary><div class="dbody">
+<div class="who"><b>Who can act:</b> Mixed — Shopify needs client approval, most of the rest we self-serve.</div><ol class="steps">
+<li><b>Shopify: request a collaborator account, not a staff account.</b> Collaborators don't consume staff seats and are clearly labelled as agency access. Ask for the collaborator request code up front. Request only the scopes we need — over-asking gets declined.</li>
+<li><b>CMS: create a new Administrator user.</b> Never rename or re-email the old user — that breaks authorship on existing content. Log in as the new user and confirm you can edit, publish and reach settings.</li>
+<li><b>Hosting is a separate login</b> from the CMS. Add the new identity there too, and rotate SFTP and SSH keys — keys shared between two former companies should not survive the merger.</li>
+<li><b>Re-register paid plugin and theme licences.</b> The one everyone misses: licences are tied to an email, and when that mailbox retires the site keeps working and quietly stops receiving security updates.</li>
+<li><b>Email platforms: verify the sending domain is still authenticated.</b> The DKIM records live in the client's DNS and survive a user change — but not a careless DNS migration. Send a real test to a seed list before removing anything.</li>
+<li><b>CRM and SaaS seats are limited and paid.</b> Ask before you're mid-migration. Reassign user-owned automations — sequences and workflows pause when their owner is deactivated.</li>
+<li><b>Cloud, repos and hosting that belong to the client:</b> migrate our access, never move the asset into our org. Rotate every key the retiring estate could see, and confirm alerts actually arrive at the new address.</li>
+<li><b>Slack Connect: re-invite from the surviving workspace.</b> History doesn't follow — export the old channel, archive it, and post a pointer in the new one.</li>
+<li><b>Recurring meetings: recreate the series from the new identity.</b> Changing the organiser on a live series drops external guests without telling anyone. Confirm acceptance, then cancel the old.</li>
+</ol>
+<div class="fails"><span class="eyebrow" style="color:var(--stop)">How it goes wrong</span><ul>
+<li><b>Site silently stops getting security updates</b> — plugin licences still on a retired mailbox.</li>
+<li><b>Automations pause</b> — a CRM workflow's owning user was deactivated rather than reassigned.</li>
+<li><b>Alerts go nowhere</b> — monitoring still points at a retired address, and nobody notices until an incident.</li>
+</ul></div>
+</div></details>
+<details id="comms"><summary><span class="stripe idle"></span><span class="ptitle">Talking to clients</span><span class="tag">Do this first</span></summary><div class="dbody">
+<div class="who"><b>Who can act:</b> The relationship lead, from the old address.</div><ol class="steps">
+<li><b>Accept the core problem: everything we're about to do looks exactly like an account takeover.</b> A new domain emails them, then asks for admin access to their advertising and analytics. A well-trained client <i>should</i> be suspicious. Our job is to make legitimacy obvious and repeated — and to be glad when they check.</li>
+<li><b>Announce from the old address.</b> It's the trusted one; use it while we still have it. An announcement from the new domain proves nothing.</li>
+<li><b>A known human signs it</b> — the person that client already talks to, in their normal voice. Not 'The Team'.</li>
+<li><b>Never batch-send.</b> Twelve identical emails going out at once reads like a compromised mailbox. Send individually, spread across the sequence.</li>
+<li><b>T−14: the announcement.</b> Answer their four real questions in order — is my service changing (no, say it first), who is my contact (same person, name them), what do I have to do (nothing yet, and I'll tell you exactly when), is my price or contract changing (answer honestly).</li>
+<li><b>T−7: the anti-phishing message.</b> The exact account IDs they'll see, the exact addresses invites come from, a sentence saying we will never ask for a password or a code, a phone number, and an explicit invitation to call and check.</li>
+<li><b>T+0 onward: ping before each request.</b> 'Sending the Meta partner request now — it'll come from BM ID 123456, approving takes a minute, here's where the button is.' Screenshot anything in Business Settings.</li>
+<li><b>Call the big ones instead of emailing.</b> Fifteen minutes, and ask the question that's worth the call on its own: is there a time of year or a campaign window where you'd rather we didn't touch the accounts?</li>
+<li><b>If a client refuses or goes quiet: don't escalate through a new channel.</b> Go back to the old address or the phone. Offer a screen-share and let them drive. Ask what would make them comfortable — it's usually smaller than you expect. Extend the dual-run; the old access still works and nothing is urgent.</li>
+</ol>
+<div class="fails"><span class="eyebrow" style="color:var(--stop)">How it goes wrong</span><ul>
+<li><b>Never email bank detail changes.</b> Phone call on a number they already have, both directions. It's the single most impersonated event in B2B fraud and their finance team is right to block it.</li>
+<li><b>Never let a client hear it publicly first.</b> Clients hear directly, the public announcement comes second.</li>
+<li><b>Never ask for a credential.</b> Every request in this migration is a link approval or an invite acceptance.</li>
+</ul></div>
+</div></details>
+</div></section>
+<footer>Generated from <code>scripts/build_board.py</code> in the private migration repo. Client names, leads and board links are stripped from this build. Snapshot 2026-08-18.</footer>
+</div><script>
+document.querySelectorAll('.crow[data-i]').forEach(function(r){
+  function t(){ var d=document.querySelector('.cdet[data-d="'+r.dataset.i+'"]');
+    var o=d.classList.toggle('open'); r.setAttribute('aria-expanded',o?'true':'false'); }
+  r.addEventListener('click',t);
+  r.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();t();} });
+});
+var secs=[].slice.call(document.querySelectorAll('section[id]'));
+var links=[].slice.call(document.querySelectorAll('nav a[href^="#"]'));
+function spy(){ var y=window.scrollY+90, cur=secs[0];
+  secs.forEach(function(s){ if(s.offsetTop<=y) cur=s; });
+  links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href')==='#'+cur.id); }); }
+window.addEventListener('scroll',spy,{passive:true}); spy();
+</script></body></html>
