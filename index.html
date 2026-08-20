@@ -170,7 +170,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <div class="wrap">
 <header><span class="eyebrow">Draft v0.1</span>
 <h1 style="margin-top:8px">Four estates into one</h1>
-<div class="hdmeta"><span><b>Snapshot</b> 2026-08-18</span><span><b>Owner</b> unassigned</span><span><b>Span</b> ~6 months</span><span><b>View</b> codes only</span></div>
+<div class="hdmeta"><span><b>Snapshot</b> 2026-08-18</span><span><b>Owner</b> unassigned</span><span><b>Span</b> 3 weeks + 90-day cleanup</span><span><b>View</b> codes only</span></div>
 <div class="dest">&rarr; team@tryagencyos.ai</div></header>
 <section id="overview"><div class="sechd"><h2>Where this stands</h2></div>
 <p class="lede">A readiness board, not a progress board. Nothing has moved yet, and the numbers below are the reason. The rule underneath everything: <b>add alongside, verify by doing real work, dual-run, then retire</b> — never swap in one step.</p>
@@ -182,14 +182,14 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 </div>
 <div class="two"><div class="panel"><div class="phd"><h3>What is left</h3><span class="tag uni" style="margin-left:auto">1 blocking now</span></div>
 <div class="blk note">Nothing here blocks the work except the first item. The rest are scheduled against the step that needs them, so they can be picked up when their turn comes rather than all at once.</div>
-<div class="blk high"><b>The seven decisions<span class="when">Week 1</span></b>The only thing genuinely blocking the start. Every phase past 1 waits on them, and two — the legal entity and the tenant choice — have the longest lead times in the plan.</div>
-<div class="blk later"><b>Is the KAMS domain its own tenant?<span class="when">Before Phase 2 · ~wk 5</span></b>Sets whether Phase 2 is two migration runs or three. Answered in the Workspace admin console in about five minutes — it just needs someone to look.</div>
-<div class="blk later"><b>Shared mailboxes, or per-person?<span class="when">Before Phase 2 · ~wk 5</span></b>Four shared inboxes today, inherited rather than chosen. Not urgent, but Phase 2 is when it is cheapest to change.</div>
-<div class="blk later"><b>Sweep Slack, Plane, Attio, Drive and hosting<span class="when">Before Phase 3 · ~wk 8</span></b>GitHub is swept and clean. The same question — who is in here that is not staff — is unanswered everywhere else.</div>
-<div class="blk later"><b>Move six repos into the org; tidy duplicate accounts<span class="when">Phase 4 · ~wk 10</span></b>Housekeeping. Two spare seats already exist, so it costs nothing but attention.</div>
+<div class="blk high"><b>The seven decisions<span class="when">Day 1</span></b>The only thing genuinely blocking the start. Everything waits on them. Two hours in a room, and under back-end scope most are straightforward.</div>
+<div class="blk later"><b>Is the KAMS domain its own tenant?<span class="when">Week 1, day 1</span></b>Sets whether the mail move is two runs or three. Five minutes in the Workspace admin console.</div>
+<div class="blk later"><b>Shared mailboxes, or per-person?<span class="when">Week 1, day 1</span></b>Four shared inboxes today, inherited rather than chosen. Cheapest to change during the mail move in week 2, so it needs deciding in week 1.</div>
+<div class="blk later"><b>Sweep Slack, Plane, Attio, Drive and hosting<span class="when">Week 3</span></b>GitHub is swept and clean. The same question — who is in here that is not staff — is unanswered everywhere else.</div>
+<div class="blk later"><b>Move six repos into the org; tidy duplicate accounts<span class="when">Week 2</span></b>Housekeeping. Two spare seats already exist, so it costs nothing but attention.</div>
 <div class="blk later"><b>Add a second vault holder<span class="when">Anytime, sooner is better</span></b>One person is currently the only route to the credential vault. Not blocking anything, but it is the kind of risk that only reveals itself at the worst moment.</div>
-<div class="blk later"><b>Assign leads to three clients<span class="when">Before ABS, THERA, SBD · ~wk 18+</span></b>Whoever is assigned must also read the mailbox that client corresponds through.</div>
-<div class="blk later"><b>Audit what the agent content pipeline authenticates as<span class="when">Before RED · ~wk 28</span></b>RED is last in the queue, so there is time — but it breaks silently at cutover if nobody looks.</div>
+<div class="blk later"><b>Assign leads to three clients<span class="when">Week 1 — they move in week 2</span></b>Needed almost immediately at this pace, not in month five. They must also read the mailbox that client uses.</div>
+<div class="blk later"><b>Audit what the agent content pipeline authenticates as<span class="when">Week 2, before RED moves</span></b>RED still moves last, but last is now week 2 rather than week 28. It breaks silently at cutover if nobody looks.</div>
 <div class="blk later"><b>Confirm one client's scope<span class="when">Before that client can be queued</span></b>Untriaged board. It has no position in the queue until someone defines the engagement.</div>
 <div class="phd" style="border-top:1px solid var(--line)"><h3>Recently closed</h3><span class="tag uni" style="margin-left:auto">11</span></div>
 <div class="blk done"><b>&#10003; Client-facing addresses identified — and they are not changing <span class="when">20 Aug</span></b>Clients correspond with two people at personal addresses on a domain that stays live as an alias indefinitely. So there is no change of contact to announce. Combined with the back-end scope, that removes most of the client-communication burden: three platforms out of seventeen need the client to click, and the rest move silently.</div>
@@ -220,8 +220,8 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 </div><div class="converge"><span class="arw">&darr;</span>team@tryagencyos.ai</div>
 </section>
 <section id="phases"><div class="sechd"><h2>The eight phases</h2><span class="n">step by step</span></div>
-<p class="lede">Phases 0–2 are strictly sequential. Phases 3, 4 and 6 run as parallel tracks with separate owners. No phase starts until the previous one's <i>done when</i> is actually true. Open any phase for its steps.</p><div style="margin-top:20px">
-<details id="p0" open><summary><span class="stripe now"></span><span><span class="ptitle">Inventory &amp; decisions</span><span class="pmeta">Phase 0 &middot; Weeks 1–3</span></span><span class="tag now">IN PROGRESS</span></summary><div class="dbody">
+<p class="lede">Three weeks of work, then a 90-day reminder to remove the old access. Phases 0–2 are still ordered. Phases 3, 4 and 6 run as parallel tracks with separate owners. No phase starts until the previous one's <i>done when</i> is actually true. Open any phase for its steps.</p><div style="margin-top:20px">
+<details id="p0" open><summary><span class="stripe now"></span><span><span class="ptitle">Inventory &amp; decisions</span><span class="pmeta">Phase 0 &middot; Week 1, days 1–2</span></span><span class="tag now">IN PROGRESS</span></summary><div class="dbody">
 <p class="goal">Before you move anything, you need to know what exists. Most merger pain comes from an account nobody remembered until it broke.</p><ol class="steps">
 <li><b>Build the master register.</b> One row per account. It is the single source of truth for the whole migration and stays live until Phase 8.</li>
 <li><b>Sweep both estates.</b> Password manager exports, Workspace admin user and app lists, 24 months of card statements (this finds the subscriptions nobody remembers), OAuth grants, every client folder.</li>
@@ -231,7 +231,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <li><b>Make the seven decisions</b> and write the answers down.</li>
 </ol><div class="donew"><span class="eyebrow">Done when</span>Every account appears in the register with an owner and a migration method, the seven decisions are recorded, and the SPOF list has been reviewed.</div>
 </div></details>
-<details id="p1"><summary><span class="stripe part"></span><span><span class="ptitle">Foundation</span><span class="pmeta">Phase 1 &middot; Weeks 3–5</span></span><span class="tag part">PARTLY DONE</span></summary><div class="dbody">
+<details id="p1"><summary><span class="stripe part"></span><span><span class="ptitle">Foundation</span><span class="pmeta">Phase 1 &middot; Week 1</span></span><span class="tag part">PARTLY DONE</span></summary><div class="dbody">
 <p class="goal">Stand up the destination properly. Everything after this depends on the new domain being a real, trusted, well-secured identity — not one someone bought last week.</p><ol class="steps">
 <li><b>Consolidate the registrar.</b> All domains under one company-owned account. Registrar lock and auto-renew on. Admin contact is a role address two people can read.</li>
 <li><b>Attach the domain to the surviving tenant.</b> If it sits in the other tenant, remove it there first — a domain cannot exist in two tenants at once.</li>
@@ -242,7 +242,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <li><b>Naming convention.</b> Personal, role and client-access addresses decided and written down.</li>
 </ol><div class="donew"><span class="eyebrow">Done when</span>DMARC reports clean, 2FA enforced for everyone, credentials in one vault, and the domain has been sending real mail for two weeks.</div>
 </div></details>
-<details id="p2"><summary><span class="stripe idle"></span><span><span class="ptitle">Identity &amp; mail</span><span class="pmeta">Phase 2 &middot; Weeks 5–9</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<details id="p2"><summary><span class="stripe idle"></span><span><span class="ptitle">Identity &amp; mail</span><span class="pmeta">Phase 2 &middot; Week 2</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
 <p class="goal">Get every human onto the new address without losing a single inbound message, calendar invite, or thread of history.</p><ol class="steps">
 <li><b>Create new addresses as additions.</b> Everyone gets the new address while the old one still works normally.</li>
 <li><b>Alias, don't redirect.</b> Attach legacy domains as secondary domains so every old address becomes an alias into the same mailbox. Nothing bounces.</li>
@@ -253,7 +253,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <li><b>One signature</b>, applied centrally. Draft the legacy auto-replies now but leave them off until Phase 7.</li>
 </ol><div class="donew"><span class="eyebrow">Done when</span>Everyone has worked from the new address for 10 straight business days, nothing has bounced, and a test to each retired address arrives in the right mailbox.</div>
 </div></details>
-<details id="p3"><summary><span class="stripe idle"></span><span><span class="ptitle">Internal operations</span><span class="pmeta">Phase 3 &middot; Weeks 8–12</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<details id="p3"><summary><span class="stripe idle"></span><span><span class="ptitle">Internal operations</span><span class="pmeta">Phase 3 &middot; Week 3</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
 <p class="goal">One place to talk, one place to plan, one place to track clients. Where the companies actually start behaving as one.</p><ol class="steps">
 <li><b>Slack.</b> Pick the surviving workspace, export the other for archive, recreate channels under one convention, re-establish client Connect channels.</li>
 <li><b>Docs.</b> One workspace. Import the other side into a clearly marked Legacy section rather than interleaving on day one. Reorganise after, not during.</li>
@@ -263,7 +263,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <li><b>Merge the SOPs.</b> Where both had a process, pick one. Where one did, adopt it.</li>
 </ol><div class="donew"><span class="eyebrow">Done when</span>Exactly one place for each function, all client Connect channels live in the surviving workspace, no duplicate companies in the CRM.</div>
 </div></details>
-<details id="p4"><summary><span class="stripe part"></span><span><span class="ptitle">Engineering estate</span><span class="pmeta">Phase 4 &middot; Weeks 10–14</span></span><span class="tag part">PARTLY DONE</span></summary><div class="dbody">
+<details id="p4"><summary><span class="stripe part"></span><span><span class="ptitle">Engineering estate</span><span class="pmeta">Phase 4 &middot; Week 2</span></span><span class="tag part">PARTLY DONE</span></summary><div class="dbody">
 <p class="goal">One GitHub org, one Vercel team, one set of secrets. Expect breakage — rehearse it on something unimportant.</p><ol class="steps">
 <li><b>Choose the surviving org</b> and set up teams that mirror how you actually work before moving anything in.</li>
 <li><b>Transfer repos one at a time, starting with an unimportant one.</b> Transfer carries issues, PRs and history. Expect to rebuild branch protection, Actions secrets and variables, environments, deploy keys, webhooks, and app installations. Write down what actually broke — that list is the checklist for the rest.</li>
@@ -273,7 +273,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <li><b>Re-point CI/CD, monitoring and alerting</b> — then confirm a test alert actually arrives.</li>
 </ol><div class="donew"><span class="eyebrow">Done when</span>Every active repo builds and deploys from the new org, no pipeline references the old one, and all exposed secrets are rotated.</div>
 </div></details>
-<details id="p5"><summary><span class="stripe idle"></span><span><span class="ptitle">Client platform access</span><span class="pmeta">Phase 5 &middot; Weeks 12–24</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<details id="p5"><summary><span class="stripe idle"></span><span><span class="ptitle">Client platform access</span><span class="pmeta">Phase 5 &middot; Weeks 1–3, batched</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
 <p class="goal">The phase that can cost you a client. One client per week at most, and always talk to them before touching their accounts.</p><ol class="steps">
 <li><b>Sequence by risk, lowest first.</b> Start small and forgiving. Learn what breaks. Work up to the largest accounts last.</li>
 <li><b>Announce before you touch anything</b>, from the <i>old</i> address, signed by a person they know, naming exactly which addresses and account IDs will contact them. Skip this and your access requests are indistinguishable from an attack.</li>
@@ -283,7 +283,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <li><b>Remove old access</b>, confirm removal by attempting it, and mark the client complete.</li>
 </ol><div class="donew"><span class="eyebrow">Done when</span>Every client has completed the runbook, dual-run has elapsed, and no client work has depended on a legacy identity for 30 days.</div>
 </div></details>
-<details id="p6"><summary><span class="stripe idle"></span><span><span class="ptitle">Vendors &amp; billing</span><span class="pmeta">Phase 6 &middot; Weeks 16–20</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<details id="p6"><summary><span class="stripe idle"></span><span><span class="ptitle">Vendors &amp; billing</span><span class="pmeta">Phase 6 &middot; Week 3</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
 <p class="goal">Two companies means two of most things. This phase usually pays for the whole migration.</p><ol class="steps">
 <li><b>List every recurring charge</b> from 24 months of statements on both sides. Anything charging you that isn't in the register is forgotten or unowned.</li>
 <li><b>Deduplicate.</b> Pick one, migrate the data, cancel the other <i>at renewal</i> rather than mid-term.</li>
@@ -293,7 +293,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <li><b>Update insurance, certifications and partner statuses</b> to the new entity and domain.</li>
 </ol><div class="donew"><span class="eyebrow">Done when</span>One subscription per function, no charges to an unowned account, one entity invoicing from one system.</div>
 </div></details>
-<details id="p7"><summary><span class="stripe idle"></span><span><span class="ptitle">Brand &amp; external presence</span><span class="pmeta">Phase 7 &middot; Weeks 20–24</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<details id="p7"><summary><span class="stripe idle"></span><span><span class="ptitle">Brand &amp; external presence</span><span class="pmeta">Phase 7 &middot; Out of scope</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
 <p class="goal">Now the plumbing works, make the outside world consistent. Earlier creates a public brand the internal systems can't back up.</p><ol class="steps">
 <li><b>Website</b> on the new domain, with 301s from legacy domains page by page — not a blanket redirect to the homepage. Legacy domains keep resolving indefinitely.</li>
 <li><b>Social, directories and listings</b> — company pages, business profiles, directories, partner listings.</li>
@@ -302,7 +302,7 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <li><b>Public announcement</b> — only after every client has heard directly. Clients should never learn about their agency's merger from social media.</li>
 </ol><div class="donew"><span class="eyebrow">Done when</span>Every public surface carries one brand, legacy URLs redirect to real equivalents, inbound leads land at the new address.</div>
 </div></details>
-<details id="p8"><summary><span class="stripe idle"></span><span><span class="ptitle">Decommission &amp; archive</span><span class="pmeta">Phase 8 &middot; Week 36+</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
+<details id="p8"><summary><span class="stripe idle"></span><span><span class="ptitle">Decommission &amp; archive</span><span class="pmeta">Phase 8 &middot; +90 days, on a reminder</span></span><span class="tag idle">NOT STARTED</span></summary><div class="dbody">
 <p class="goal">The temptation is to do this early to save money. Don't. Keeping things alive is trivially cheap against one unrecoverable account.</p><ol class="steps">
 <li><b>Freeze, don't delete.</b> Retired mailboxes become archived or suspended accounts with forwarding intact, for at least a year.</li>
 <li><b>Export before shutting anything down</b> — Slack, PM tool, CRM, Drive — into one documented archive location.</li>
