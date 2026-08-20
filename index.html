@@ -175,12 +175,11 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <div class="stat warn"><span class="eyebrow">Phase</span><div class="v">0<small>/8</small></div><div class="sub">Inventory — nearly done</div></div>
 <div class="stat ok"><span class="eyebrow">Client identity known</span><div class="v">11<small>/11</small></div><div class="sub">Growth Archon holds 7</div></div>
 <div class="stat stop"><span class="eyebrow">Decisions made</span><div class="v">0<small>/7</small></div><div class="sub">All seven gate Phase 1</div></div>
-<div class="stat warn"><span class="eyebrow">Open blockers</span><div class="v">10</div><div class="sub">1 high · 9 medium · 7 closed</div></div>
+<div class="stat warn"><span class="eyebrow">Open blockers</span><div class="v">9</div><div class="sub">1 high · 8 medium · 8 closed</div></div>
 </div>
 <div class="two"><div class="panel"><div class="phd"><h3>Open blockers</h3></div>
 <div class="blk high"><b>The largest estate runs on Fastmail</b>Confirmed from DNS. It holds 7 of 11 client relationships, so Phase 2 is two different migration types — Google-to-Google for the rest, IMAP for this one. Google's tenant-to-tenant tooling does not apply.</div>
 <div class="blk "><b>Staff accounts on retiring domains hold service logins</b>People joining from the merging companies have GitHub and vendor accounts registered to email on domains this migration retires. Close a mailbox and that account's recovery path closes with it. Re-point every service account to the new domain before Phase 8 touches anything.</div>
-<div class="blk "><b>Two staff reach client repos without org membership</b>Both are confirmed team members, so nothing improper is happening. But the access runs through individual repo grants — 18 and 3 — rather than org membership, so offboarding is a stack of revocations and any audit starting from the member list misses them.</div>
 <div class="blk "><b>The account sweep has only covered GitHub</b>GitHub is done and every account is now named. Slack guests, PM-tool externals, CRM seats, Drive shares and hosting members have not been enumerated.</div>
 <div class="blk "><b>Is the KAMS domain a separate tenant or a secondary domain?</b>Confirmed Google Workspace from DNS. Tenant structure still unknown, and KAMS still needs confirming as the Kas &amp; Z estate.</div>
 <div class="blk "><b>3 clients have no lead assigned</b>The pilot now has one, so this no longer blocks the start — but three later clients still need a named owner before their turn.</div>
@@ -188,7 +187,8 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <div class="blk "><b>One client's scope is unconfirmed</b>Untriaged board. No queue position until the engagement is defined.</div>
 <div class="blk "><b>Credential access bottlenecks on one person</b>Single human route to the vault. Needs a second named holder.</div>
 <div class="blk "><b>An agent content pipeline's auth is unaudited</b>Not found in either known GitHub org — look wider before that client moves.</div>
-<div class="phd" style="border-top:1px solid var(--line)"><h3>Recently closed</h3><span class="tag uni" style="margin-left:auto">7</span></div>
+<div class="phd" style="border-top:1px solid var(--line)"><h3>Recently closed</h3><span class="tag uni" style="margin-left:auto">8</span></div>
+<div class="blk done"><b>&#10003; The last unexplained access is explained <span class="when">20 Aug</span></b>One person holds two GitHub accounts — an org owner identity and a second account carrying 18 repo grants. Both statements were true at once. Nothing improper anywhere in the estate; what remains is tidy-up, not a blocker.</div>
 <div class="blk done"><b>&#10003; The pilot client has a lead <span class="when">20 Aug</span></b>Assigned to the Outrider side, where that client's access already sits. Removes the blocker that was holding up the start of the queue.</div>
 <div class="blk done"><b>&#10003; Every GitHub account is identified <span class="when">20 Aug</span></b>All 35 repos across both orgs enumerated, and all eight accounts now named — five staff org members, two staff joining from a merging company, one client on their own repo. Nothing unaccounted for.</div>
 <div class="blk done"><b>&#10003; All client identities mapped <span class="when">19 Aug</span></b>Was the top blocker. 11 of 11 now known — Growth Archon 7, KAMS 3, Outrider 1.</div>
