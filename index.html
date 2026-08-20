@@ -81,6 +81,9 @@ section{padding-top:46px;scroll-margin-top:56px}
 .blk{padding:12px 17px;font-size:.85rem;color:var(--ink2);border-left:3px solid var(--warn);background:var(--warnSoft)}
 .blk.high{border-left-color:var(--stop);background:var(--stopSoft)}
 .blk.done{border-left-color:var(--ok);background:var(--surface)}
+.blk.later{border-left-color:var(--line);background:var(--surface)}
+.blk.note{border-left-color:var(--uni);background:var(--uniSoft);font-size:.82rem}
+.blk.later b{color:var(--ink)}
 .blk.done b{color:var(--ok)}
 .blk .when{font-family:var(--mono);font-size:.65rem;color:var(--muted);font-weight:400;margin-left:6px}
 .blk+.blk{border-top:1px solid var(--lineSoft)}
@@ -175,18 +178,19 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <div class="stat warn"><span class="eyebrow">Phase</span><div class="v">0<small>/8</small></div><div class="sub">Inventory — nearly done</div></div>
 <div class="stat ok"><span class="eyebrow">Client identity known</span><div class="v">11<small>/11</small></div><div class="sub">Growth Archon holds 7</div></div>
 <div class="stat stop"><span class="eyebrow">Decisions made</span><div class="v">0<small>/7</small></div><div class="sub">All seven gate Phase 1</div></div>
-<div class="stat ok"><span class="eyebrow">Open blockers</span><div class="v">9</div><div class="sub">no highs · 9 medium · 11 closed</div></div>
+<div class="stat warn"><span class="eyebrow">Blocking right now</span><div class="v">1</div><div class="sub">The seven decisions · 11 closed</div></div>
 </div>
-<div class="two"><div class="panel"><div class="phd"><h3>Open blockers</h3></div>
-<div class="blk "><b>The estate runs largely on shared mailboxes</b>Four of them alongside the personal client-facing addresses. No audit trail on who told a client what, departures mean rotation rather than de-provisioning, and the two shared client-facing inboxes have disjoint readers.</div>
-<div class="blk "><b>The access-holding mailbox must survive the whole queue</b>It receives invitation, verification, security and recovery mail for the identities holding seven clients' access. Break inbound and you lose the ability to complete or reverse a transfer. Live to roughly week 30.</div>
-<div class="blk "><b>The account sweep has only covered GitHub</b>GitHub is done and every account is named. Slack guests, PM-tool externals, CRM seats, Drive shares and hosting members have not been enumerated.</div>
-<div class="blk "><b>Is the KAMS domain a separate tenant or a secondary domain?</b>The estate itself is confirmed. What remains is whether its domain is its own Workspace tenant or a secondary domain on an existing one — that sets the length of Phase 2.</div>
-<div class="blk "><b>3 clients have no lead assigned</b>Needed before each one's turn in the queue.</div>
-<div class="blk "><b>Six repos sit outside the org's per-person membership</b>The org already has individual accounts and 2 spare seats. These six are reachable only through the shared login.</div>
-<div class="blk "><b>One client's scope is unconfirmed</b>Untriaged board. No queue position until the engagement is defined.</div>
-<div class="blk "><b>Credential access bottlenecks on one person</b>Single human route to the vault. Needs a second named holder.</div>
-<div class="blk "><b>An agent content pipeline's auth is unaudited</b>Not found in either known GitHub org — look wider before that client moves.</div>
+<div class="two"><div class="panel"><div class="phd"><h3>What is left</h3><span class="tag uni" style="margin-left:auto">1 blocking now</span></div>
+<div class="blk note">Nothing here blocks the work except the first item. The rest are scheduled against the step that needs them, so they can be picked up when their turn comes rather than all at once.</div>
+<div class="blk high"><b>The seven decisions<span class="when">Week 1</span></b>The only thing genuinely blocking the start. Every phase past 1 waits on them, and two — the legal entity and the tenant choice — have the longest lead times in the plan.</div>
+<div class="blk later"><b>Is the KAMS domain its own tenant?<span class="when">Before Phase 2 · ~wk 5</span></b>Sets whether Phase 2 is two migration runs or three. Answered in the Workspace admin console in about five minutes — it just needs someone to look.</div>
+<div class="blk later"><b>Shared mailboxes, or per-person?<span class="when">Before Phase 2 · ~wk 5</span></b>Four shared inboxes today, inherited rather than chosen. Not urgent, but Phase 2 is when it is cheapest to change.</div>
+<div class="blk later"><b>Sweep Slack, Plane, Attio, Drive and hosting<span class="when">Before Phase 3 · ~wk 8</span></b>GitHub is swept and clean. The same question — who is in here that is not staff — is unanswered everywhere else.</div>
+<div class="blk later"><b>Move six repos into the org; tidy duplicate accounts<span class="when">Phase 4 · ~wk 10</span></b>Housekeeping. Two spare seats already exist, so it costs nothing but attention.</div>
+<div class="blk later"><b>Add a second vault holder<span class="when">Anytime, sooner is better</span></b>One person is currently the only route to the credential vault. Not blocking anything, but it is the kind of risk that only reveals itself at the worst moment.</div>
+<div class="blk later"><b>Assign leads to three clients<span class="when">Before ABS, THERA, SBD · ~wk 18+</span></b>Whoever is assigned must also read the mailbox that client corresponds through.</div>
+<div class="blk later"><b>Audit what the agent content pipeline authenticates as<span class="when">Before RED · ~wk 28</span></b>RED is last in the queue, so there is time — but it breaks silently at cutover if nobody looks.</div>
+<div class="blk later"><b>Confirm one client's scope<span class="when">Before that client can be queued</span></b>Untriaged board. It has no position in the queue until someone defines the engagement.</div>
 <div class="phd" style="border-top:1px solid var(--line)"><h3>Recently closed</h3><span class="tag uni" style="margin-left:auto">11</span></div>
 <div class="blk done"><b>&#10003; Client-facing addresses identified — and they are not changing <span class="when">20 Aug</span></b>Clients correspond with two people at personal addresses on a domain that stays live as an alias indefinitely. So there is no change of contact to announce. Combined with the back-end scope, that removes most of the client-communication burden: three platforms out of seventeen need the client to click, and the rest move silently.</div>
 <div class="blk done"><b>&#10003; Shared mailboxes mapped, and KAMS confirmed <span class="when">20 Aug</span></b>Four shared mailboxes, with named readers on each. That settles two things at once: the KAMS estate is confirmed by its mailbox and the people on it, and the access-holding inbox now has named owners rather than nobody.</div>
