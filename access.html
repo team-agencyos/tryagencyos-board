@@ -1,0 +1,287 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Access Map — TryAgencyOS Migration Board</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F4F6F7;--surface:#FFF;--surface2:#EAEEEF;--sunk:#E4E9EA;
+  --ink:#12171A;--ink2:#3C464B;--muted:#66727A;--line:#DCE2E4;--lineSoft:#E9EDEF;
+  --uni:#0E6F62;--uniSoft:#DCEDEA;--ok:#1E7A4C;--warn:#9A5B08;--warnSoft:#FAECD8;
+  --stop:#A3291A;--stopSoft:#F8E1DD;
+  --aos:#3F4FBF;--gar:#7B3F94;--kz:#B25C2E;--od:#2A6F92;
+  --shadow:0 1px 2px rgba(18,23,26,.05),0 10px 28px -20px rgba(18,23,26,.3);
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0E1315;--surface:#161C1F;--surface2:#1C2427;--sunk:#101619;
+  --ink:#E7ECEE;--ink2:#B6C0C4;--muted:#87959A;--line:#2A3438;--lineSoft:#212A2D;
+  --uni:#3FBCA6;--uniSoft:#12332E;--ok:#4FBE85;--warn:#D99B44;--warnSoft:#33260F;
+  --stop:#EC7461;--stopSoft:#3A1D18;
+  --aos:#8B96EE;--gar:#C08FD8;--kz:#DE8F5F;--od:#6FB2D4;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -22px rgba(0,0,0,.9);
+}}
+:root[data-theme="dark"]{
+  --paper:#0E1315;--surface:#161C1F;--surface2:#1C2427;--sunk:#101619;
+  --ink:#E7ECEE;--ink2:#B6C0C4;--muted:#87959A;--line:#2A3438;--lineSoft:#212A2D;
+  --uni:#3FBCA6;--uniSoft:#12332E;--ok:#4FBE85;--warn:#D99B44;--warnSoft:#33260F;
+  --stop:#EC7461;--stopSoft:#3A1D18;
+  --aos:#8B96EE;--gar:#C08FD8;--kz:#DE8F5F;--od:#6FB2D4;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -22px rgba(0,0,0,.9);
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;
+  line-height:1.6;margin:0;padding:0 20px 90px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;line-height:1.15;letter-spacing:-.022em;text-wrap:balance}
+h1{font-size:clamp(1.75rem,3.6vw,2.4rem);letter-spacing:-.032em}
+h2{font-size:1.35rem}h3{font-size:1rem;letter-spacing:-.012em}
+p{margin:0}a{color:var(--uni)}
+code{font-family:var(--mono);font-size:.85em;background:var(--surface2);padding:.08em .34em;border-radius:3px}
+.eyebrow{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono)}
+nav{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line);
+  margin:0 -20px 0;padding:0 20px}
+.navin{max-width:1000px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;align-items:center}
+nav a{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;
+  padding:13px 12px;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+nav a:hover{color:var(--ink)}
+nav a.on{color:var(--uni);border-bottom-color:var(--uni)}
+nav .brand{font-family:var(--display);font-weight:700;font-size:.85rem;margin-right:14px;white-space:nowrap}
+header{padding:40px 0 26px}
+.hdmeta{font-family:var(--mono);font-size:.72rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:12px}
+.hdmeta b{color:var(--ink2);font-weight:500}
+.dest{display:inline-block;font-family:var(--mono);font-size:.78rem;padding:5px 11px;border:1px solid var(--uni);
+  background:var(--uniSoft);color:var(--uni);border-radius:3px;font-weight:600;margin-top:14px}
+section{padding-top:46px;scroll-margin-top:56px}
+.sechd{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.lede{color:var(--ink2);font-size:.96rem;margin-top:8px;max-width:70ch}
+.estates{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+@media(max-width:760px){.estates{grid-template-columns:repeat(2,1fr)}}
+.est{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--muted);
+  border-radius:4px;padding:13px 15px;box-shadow:var(--shadow)}
+.est.aos{border-top-color:var(--aos)}.est.gar{border-top-color:var(--gar)}
+.est.kz{border-top-color:var(--kz)}.est.od{border-top-color:var(--od)}
+.est .nm{font-family:var(--display);font-weight:700;font-size:.95rem}
+.est .hd{font-size:.78rem;color:var(--muted);margin-top:4px}
+.converge{text-align:center;margin-top:14px;font-family:var(--mono);font-size:.8rem;color:var(--uni)}
+.converge .arw{display:block;color:var(--line);font-size:1.1rem;line-height:1}
+.tag{font-family:var(--mono);font-size:.63rem;font-weight:600;padding:3px 8px;border-radius:2px;
+  background:var(--surface2);color:var(--muted);white-space:nowrap}
+.tag.now{background:var(--uniSoft);color:var(--uni)}.tag.part{background:var(--warnSoft);color:var(--warn)}
+.tag.stop{background:var(--stopSoft);color:var(--stop)}.tag.uni{background:var(--uniSoft);color:var(--uni)}
+.tag.warn{background:var(--warnSoft);color:var(--warn)}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex:none;margin-right:7px;vertical-align:baseline}
+.d-aos{background:var(--aos)}.d-gar{background:var(--gar)}.d-kz{background:var(--kz)}.d-od{background:var(--od)}
+/* wave tables */
+.wave{margin-top:26px}
+.wavehd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.wavehd .when{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.twrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.88rem}
+th{text-align:left;font-family:var(--mono);font-size:.63rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;padding:10px 15px 8px;background:var(--surface2);border-bottom:1px solid var(--line)}
+td{padding:10px 15px;border-bottom:1px solid var(--lineSoft);vertical-align:top;color:var(--ink2)}
+tr:last-child td{border-bottom:none}
+td.ccode{font-family:var(--mono);font-weight:700;font-size:.84rem;color:var(--ink);white-space:nowrap}
+td .est-sub{display:block;font-family:var(--mono);font-size:.65rem;color:var(--muted);font-weight:400;margin-top:2px}
+.from{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.to{font-family:var(--mono);font-size:.74rem;color:var(--uni);font-weight:600;white-space:nowrap}
+.arw2{color:var(--uni);font-weight:600}
+/* gotchas */
+.fails{margin-top:16px;padding:13px 15px;background:var(--stopSoft);border-radius:3px}
+.fails ul{margin:8px 0 0;padding-left:16px}
+.fails li{font-size:.87rem;color:var(--ink2);margin-bottom:6px}
+.fails b{color:var(--ink)}
+/* emails */
+details{background:var(--surface);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow)}
+details+details{margin-top:9px}
+summary{cursor:pointer;padding:14px 18px;list-style:none;display:flex;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);color:var(--muted);margin-left:auto;font-size:1.05rem;flex:none}
+details[open] summary::after{content:"\2212";color:var(--uni)}
+summary:hover{background:var(--surface2)}
+summary:focus-visible{outline:2px solid var(--uni);outline-offset:-2px}
+details[open] summary{border-bottom:1px solid var(--lineSoft);background:var(--surface2)}
+.dbody{padding:16px 18px 20px;max-width:74ch}
+.ptitle{font-family:var(--display);font-weight:700;font-size:1rem}
+.pmeta{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:2px}
+.dbody .subj{font-weight:600;color:var(--ink);margin-bottom:12px}
+.dbody .subj .eyebrow{display:inline;margin-right:8px}
+.dbody p{margin:0 0 12px;font-size:.9rem;color:var(--ink2)}
+.dbody ol{margin:0 0 12px;padding-left:20px;font-size:.9rem;color:var(--ink2)}
+.dbody li{margin-bottom:5px}
+.ph{background:var(--warnSoft);color:var(--warn);border-radius:3px;padding:0 4px;font-family:var(--mono);font-size:.8rem}
+.addr{font-family:var(--mono);font-size:.82rem;color:var(--uni);font-weight:600}
+footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:.79rem;color:var(--muted)}
+:focus-visible{outline:2px solid var(--uni);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<nav><div class="navin"><span class="brand">Migration Board</span><a href="index.html">&larr; Main board</a><a href="#estates" class="on">Access map</a><a href="#queue">Queue</a><a href="#internal">Internal</a><a href="#gotchas">Gotchas</a><a href="#emails">Emails</a></div></nav>
+<div class="wrap">
+<header><span class="eyebrow">Access map · companion to the main board</span>
+<h1 style="margin-top:8px">Who grants what, from where</h1>
+<p class="lede">Every grant moving off the four estates, client by client, in queue order — and the emails that ask for it. Same rule as everywhere else on this board: <b>add alongside, verify by doing real work, dual-run 60&ndash;90 days, then retire</b>. Clients only ever add access; nothing is removed in the first pass.</p>
+<div class="hdmeta"><span><b>Snapshot</b> 2026-08-27</span><span><b>First client</b> SV — items filed (SV-11&ndash;14)</span><span><b>View</b> codes only</span></div>
+<div class="dest">&rarr; ops@tryagencyos.ai &middot; credentials in the team vault</div></header>
+
+<section id="estates"><div class="sechd"><h2>Where access lives today</h2></div>
+<p class="lede">The "from" side. Each client's grants sit in one or more of these four estates.</p>
+<div class="estates">
+<div class="est gar"><div class="nm">Growth Archon</div><div class="hd">7 clients: TPP &middot; TFP &middot; ABS &middot; THERA &middot; SBD &middot; RED &middot; AOC. Mail is not on Google — grants are per-person addresses.</div></div>
+<div class="est kz"><div class="nm">KAMS</div><div class="hd">3 clients: PFO &middot; COD &middot; CPG. Google Ads runs through the KAMG manager account — the conversion-ownership hotspot.</div></div>
+<div class="est od"><div class="nm">Outrider</div><div class="hd">1 client: SV. Also holds the team Cloudflare; SPF/DKIM completion is a send-as prerequisite.</div></div>
+<div class="est aos"><div class="nm">Personal &amp; legacy</div><div class="hd">Departed and personal logins still holding repos, hosted case studies, and the identity domain's DNS. Ownership moves, not grants.</div></div>
+</div>
+<div class="converge"><span class="arw">&darr;&nbsp;&darr;&nbsp;&darr;&nbsp;&darr;</span>ops@tryagencyos.ai</div>
+</section>
+
+<section id="queue"><div class="sechd"><h2>Client queue &mdash; four waves, lowest risk first</h2></div>
+<p class="lede">Same order as the main board's queue. Rows tagged <span class="tag warn">confirm</span> have no Tech&nbsp;Stack&nbsp;&amp;&nbsp;Access page yet — confirming the platform list is the first task of that client's batch, not a blocker to starting.</p>
+
+<div class="wave"><div class="wavehd"><h3>Wave 1 &middot; Rehearsal</h3><span class="when">now &rarr; 2026-09-05</span><span class="tag now">in motion</span></div>
+<div class="twrap"><table>
+<tr><th>Client</th><th>Access to migrate</th><th>From</th><th></th><th>To</th><th>Status</th></tr>
+<tr><td class="ccode"><span class="dot d-od"></span>SV<span class="est-sub">Outrider</span></td>
+<td>CMS admin &middot; GA4 Editor &middot; Search Console Full &middot; analytics org <span class="tag warn">confirm exact holders</span></td>
+<td class="from">Outrider + per-person grants</td><td class="arw2">&rarr;</td><td class="to">ops@tryagencyos.ai</td>
+<td><span class="tag now">SV-11&ndash;14 filed</span></td></tr>
+</table></div></div>
+
+<div class="wave"><div class="wavehd"><h3>Wave 2 &middot; Small boards</h3><span class="when">Sep weeks 1&ndash;2</span></div>
+<div class="twrap"><table>
+<tr><th>Client</th><th>Access to migrate</th><th>From</th><th></th><th>To</th><th>Status</th></tr>
+<tr><td class="ccode"><span class="dot d-kz"></span>PFO<span class="est-sub">KAMS</span></td>
+<td>Thin, mostly wrapped board <span class="tag warn">confirm</span></td>
+<td class="from">KAMS manager account</td><td class="arw2">&rarr;</td><td class="to">ops@tryagencyos.ai</td>
+<td><span class="tag">queued</span></td></tr>
+<tr><td class="ccode"><span class="dot d-gar"></span>TPP<span class="est-sub">Growth Archon</span></td>
+<td>GA4 &middot; Search Console &middot; CMS (board has an Access &amp; Tracking module — read it first)</td>
+<td class="from">Growth Archon addresses</td><td class="arw2">&rarr;</td><td class="to">ops@tryagencyos.ai</td>
+<td><span class="tag">queued</span></td></tr>
+<tr><td class="ccode"><span class="dot d-kz"></span>COD<span class="est-sub">KAMS</span></td>
+<td>Client-facing board only — likely minimal <span class="tag warn">confirm</span></td>
+<td class="from">KAMS manager account</td><td class="arw2">&rarr;</td><td class="to">ops@tryagencyos.ai</td>
+<td><span class="tag">queued</span></td></tr>
+</table></div></div>
+
+<div class="wave"><div class="wavehd"><h3>Wave 3 &middot; Careful &mdash; recently launched sites</h3><span class="when">Sep weeks 3&ndash;4</span></div>
+<div class="twrap"><table>
+<tr><th>Client</th><th>Access to migrate</th><th>From</th><th></th><th>To</th><th>Status</th></tr>
+<tr><td class="ccode"><span class="dot d-gar"></span>TFP<span class="est-sub">Growth Archon</span></td>
+<td>CMS/hosting &middot; GA4 &middot; Search Console &middot; Google Ads &middot; booking platform</td>
+<td class="from">Growth Archon + KAMG MCC (Ads)</td><td class="arw2">&rarr;</td><td class="to">team@ + new MCC</td>
+<td><span class="tag">after redesign ships</span></td></tr>
+<tr><td class="ccode"><span class="dot d-gar"></span>ABS<span class="est-sub">Growth Archon</span></td>
+<td>CMS/hosting &middot; GA4 &middot; Search Console &middot; Google Ads &middot; <b>its own GitHub org</b></td>
+<td class="from">Growth Archon + client GitHub org</td><td class="arw2">&rarr;</td><td class="to">team@ / team org</td>
+<td><span class="tag">queued</span></td></tr>
+<tr><td class="ccode"><span class="dot d-gar"></span>THERA<span class="est-sub">Growth Archon</span></td>
+<td>GA4 &middot; Search Console &middot; Google Ads (brief incomplete — needs a lead first)</td>
+<td class="from">Growth Archon + KAMG MCC (Ads)</td><td class="arw2">&rarr;</td><td class="to">team@ + new MCC</td>
+<td><span class="tag">queued</span></td></tr>
+</table></div></div>
+
+<div class="wave"><div class="wavehd"><h3>Wave 4 &middot; Heavy boards last</h3><span class="when">Oct &middot; each in a quiet window</span></div>
+<div class="twrap"><table>
+<tr><th>Client</th><th>Access to migrate</th><th>From</th><th></th><th>To</th><th>Status</th></tr>
+<tr><td class="ccode"><span class="dot d-gar"></span>SBD<span class="est-sub">Growth Archon</span></td>
+<td>CMS &middot; GA4 &middot; Search Console &middot; Google Ads &middot; measurement stack — busiest board, needs a quiet window</td>
+<td class="from">Growth Archon + KAMG MCC (Ads)</td><td class="arw2">&rarr;</td><td class="to">team@ + new MCC</td>
+<td><span class="tag">queued</span></td></tr>
+<tr><td class="ccode"><span class="dot d-kz"></span>CPG<span class="est-sub">KAMS</span></td>
+<td>Largest KAMS client — full discovery first <span class="tag warn">confirm</span></td>
+<td class="from">KAMS manager account</td><td class="arw2">&rarr;</td><td class="to">ops@tryagencyos.ai</td>
+<td><span class="tag">queued</span></td></tr>
+<tr><td class="ccode"><span class="dot d-gar"></span>RED<span class="est-sub">Growth Archon</span></td>
+<td>Google Ads &middot; CRM &middot; cold-email infra &middot; website &middot; agent-driven content pipeline</td>
+<td class="from">Growth Archon + KAMG MCC (Ads)</td><td class="arw2">&rarr;</td><td class="to">team@ + new MCC</td>
+<td><span class="tag">queued</span></td></tr>
+<tr><td class="ccode"><span class="dot d-gar"></span>AOC<span class="est-sub">Growth Archon</span></td>
+<td>Scope unconfirmed, board untriaged — do not start without the account lead</td>
+<td class="from">Growth Archon</td><td class="arw2">&rarr;</td><td class="to">ops@tryagencyos.ai</td>
+<td><span class="tag stop">blocked</span></td></tr>
+</table></div></div>
+</section>
+
+<section id="internal"><div class="sechd"><h2>Internal estate &mdash; ownership moves, no client involved</h2></div>
+<p class="lede">Runs in parallel with Waves 1&ndash;2. These are transfers of ownership, not access grants.</p>
+<div class="twrap" style="margin-top:16px"><table>
+<tr><th>Asset</th><th>From</th><th></th><th>To</th><th>Status</th></tr>
+<tr><td><b>Identity domain DNS</b> (Vercel nameservers)</td>
+<td class="from">a personal Vercel account</td><td class="arw2">&rarr;</td><td class="to">team Vercel + vaulted login</td>
+<td><span class="tag warn">verify + vault</span></td></tr>
+<tr><td><b>Repos + org access</b></td>
+<td class="from">a departed teammate's GitHub</td><td class="arw2">&rarr;</td><td class="to">team org</td>
+<td><span class="tag warn">pending sign-off</span></td></tr>
+<tr><td><b>Case studies &times;2</b> (7 live links)</td>
+<td class="from">personal GitHub Pages</td><td class="arw2">&rarr;</td><td class="to">team org Pages</td>
+<td><span class="tag warn">pending sign-off</span></td></tr>
+<tr><td><b>Google Ads manager (MCC)</b> — must exist before Wave 3</td>
+<td class="from">KAMG manager account</td><td class="arw2">&rarr;</td><td class="to">new team MCC, dual-linked</td>
+<td><span class="tag">build in Wave 2</span></td></tr>
+<tr><td><b>Sender-domain email auth</b> (SPF + DKIM) — prerequisite for send-as masks</td>
+<td class="from">incomplete DNS records</td><td class="arw2">&rarr;</td><td class="to">complete, verified</td>
+<td><span class="tag now">this week</span></td></tr>
+</table></div>
+</section>
+
+<section id="gotchas"><div class="sechd"><h2>Retirement gotchas</h2></div>
+<p class="lede">Check these before removing anything, months from now. All four fail silently.</p>
+<div class="fails"><ul>
+<li><b>Ads conversions die on unlink.</b> Conversions owned at the manager level stop recording the moment the old manager is removed. Check ownership before touching any Ads link.</li>
+<li><b>Plugin licenses lapse.</b> CMS plugin licenses tied to a retiring email stop updating with no error. Re-register during dual-run, not after.</li>
+<li><b>Alerts go nowhere.</b> Monitoring, uptime and form notifications pointing at a retired address fail invisibly. Sweep alert destinations per client before retirement.</li>
+<li><b>Verification chains break.</b> Search Console &harr; GA4 &harr; Tag Manager links depend on specific owners. Remove old owners last, one at a time, verifying after each.</li>
+</ul></div>
+</section>
+
+<section id="emails"><div class="sechd"><h2>The emails</h2></div>
+<p class="lede">Two per client (three where Google Ads is linked), always sent from the <b>existing trusted address</b> the client already knows — never from the new domain. Swap the highlighted placeholders.</p>
+<div style="margin-top:16px">
+<details open><summary><div><div class="ptitle">MIG-01a &middot; The announcement</div><div class="pmeta">day 1 &middot; from the current address &middot; carries the anti-phishing line</div></div></summary>
+<div class="dbody">
+<p class="subj"><span class="eyebrow">Subject</span>Small housekeeping on our side — one new team login to approve</p>
+<p>Hi <span class="ph">[CLIENT NAME]</span>,</p>
+<p>Quick operational note: we're consolidating our internal tooling under one company system, <b>AgencyOS</b>. Nothing changes about who works on your account, what we deliver, or what you pay.</p>
+<p>The only thing we need from you: over the next week we'll send a couple of access invitations for our new team address, <span class="addr">ops@tryagencyos.ai</span>, on the platforms we already manage for you. Approving each one takes under a minute, and our existing access stays in place alongside it — so there's zero risk of disruption.</p>
+<p>Heads-up for security: the ONLY address we'll ask you to grant access to is <span class="addr">ops@tryagencyos.ai</span> — exactly that spelling. If you ever get an access request from any other address claiming to be us, don't approve it; just forward it to me.</p>
+<p>I'll follow up with the specific invitations shortly.</p>
+<p>Thanks,<br><span class="ph">[YOUR NAME]</span></p>
+</div></details>
+<details><summary><div><div class="ptitle">MIG-01b &middot; The access asks</div><div class="pmeta">day 2&ndash;3 &middot; trim the list to the client's confirmed platforms</div></div></summary>
+<div class="dbody">
+<p class="subj"><span class="eyebrow">Subject</span>The access approvals I mentioned — 3 quick ones</p>
+<p>Hi <span class="ph">[CLIENT NAME]</span>,</p>
+<p>As promised, here are the access grants — each under a minute:</p>
+<ol>
+<li><b>Google Analytics</b> — Admin &rarr; Property access management &rarr; Add user &rarr; <span class="addr">ops@tryagencyos.ai</span> &rarr; role <b>Editor</b>.</li>
+<li><b>Search Console</b> — Settings &rarr; Users and permissions &rarr; Add user &rarr; <span class="addr">ops@tryagencyos.ai</span> &rarr; <b>Full</b> permission.</li>
+<li><b><span class="ph">[CMS NAME]</span></b> — please create an Administrator user for <span class="addr">ops@tryagencyos.ai</span> (we'll set the password via the reset link).</li>
+</ol>
+<p>Our current access stays active too — nothing is being switched off. Reply "done" (or tell me which ones you'd rather I walk you through on a quick call) and we'll confirm everything works from our side.</p>
+<p>Thanks,<br><span class="ph">[YOUR NAME]</span></p>
+</div></details>
+<details><summary><div><div class="ptitle">MIG-02 &middot; Google Ads variant</div><div class="pmeta">only where an Ads account is linked &middot; after the new MCC exists &middot; check conversion ownership first</div></div></summary>
+<div class="dbody">
+<p class="subj"><span class="eyebrow">Subject</span>One more approval — Google Ads</p>
+<p>Hi <span class="ph">[CLIENT NAME]</span>,</p>
+<p>Last one: we've sent a link request to your Google Ads account from our new manager account. To approve it:</p>
+<ol>
+<li>Log in at ads.google.com.</li>
+<li>Click the <b>Admin</b> icon &rarr; <b>Access and security</b> &rarr; <b>Managers</b> tab.</li>
+<li>You'll see a pending request from <b>"AgencyOS"</b> — click <b>Accept</b>.</li>
+</ol>
+<p>Your existing manager connection stays linked as well — both run side by side, and nothing about your campaigns changes.</p>
+<p>Thanks,<br><span class="ph">[YOUR NAME]</span></p>
+</div></details>
+</div>
+</section>
+
+<footer>Access map &middot; companion page to the <a href="index.html">main migration board</a> &middot; snapshot 2026-08-27 &middot; codes only, people and client names stripped &middot; contact team@tryagencyos.ai</footer>
+</div></body></html>
