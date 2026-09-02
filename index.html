@@ -174,36 +174,19 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <div class="dest">&rarr; team@tryagencyos.ai &middot; client grants (identities: firstname@)</div></header>
 <section id="tldr" style="padding-top:30px">
 <div class="sechd"><h2>The short version</h2></div>
-<p class="lede" style="max-width:66ch">We are merging four separate account worlds (Outrider Digital, Growth Archon, Kas &amp; Z / KAMG, AgencyOS) into one, on <b>tryagencyos.ai</b>. Two moves, independent of each other:</p>
-<div class="two" style="grid-template-columns:1fr 1fr;margin-top:16px">
-<div class="panel" style="border-top:3px solid var(--uni)"><div class="phd"><h3>What changes</h3></div>
-<div class="pitem">Every client platform we manage (Analytics, Search Console, CMS, Ads) gets one new authorised address added alongside the existing access: <b>team@tryagencyos.ai</b></div>
-<div class="pitem">Clients approve 2 or 3 invites, under a minute each</div>
-<div class="pitem">Every team member gets one login for all internal tools: <b>firstname@tryagencyos.ai</b></div>
-<div class="pitem">The brand addresses clients know become send-as masks on that one inbox</div></div>
-<div class="panel" style="border-top:3px solid var(--ok)"><div class="phd"><h3>What does not change</h3></div>
-<div class="pitem">Clients keep emailing the addresses they already know, forever</div>
-<div class="pitem">No mailbox is migrated, ever</div>
-<div class="pitem">Nothing is switched off now: old and new access run side by side for 60 to 90 days</div>
-<div class="pitem">Only after that is legacy access retired, one platform at a time. Every step is reversible</div></div>
-</div>
-<div style="display:grid;grid-template-columns:1fr 34px 1fr;gap:12px;margin-top:14px;align-items:stretch">
-<div class="panel" style="border-top:3px solid var(--stop)"><div class="phd"><h3>Today</h3></div>
-<div class="pitem">Four estates, five-plus domains, logins everywhere</div>
-<div class="pitem">Client access granted to a mix of personal and brand addresses</div>
-<div class="pitem">People who left still hold repos, DNS and case studies</div>
-<div class="pitem">Google Ads runs through the old KAMG manager account</div>
-<div class="pitem">Offboarding means hunting accounts across domains</div></div>
-<div style="display:flex;align-items:center;justify-content:center;color:var(--uni);font-size:1.3rem;font-weight:700">&rarr;</div>
-<div class="panel" style="border-top:3px solid var(--uni)"><div class="phd"><h3>When we&rsquo;re done</h3></div>
-<div class="pitem">One Google Workspace on tryagencyos.ai</div>
-<div class="pitem">One login per person for every internal tool: firstname@tryagencyos.ai</div>
-<div class="pitem">All client access under <b>team@tryagencyos.ai</b>, credentials in the shared vault</div>
-<div class="pitem">Old addresses keep working forever as aliases and forwarders</div>
-<div class="pitem">Offboarding: suspend one account and every access dies with it</div></div>
-</div>
-<div style="margin-top:14px;font-family:var(--mono);font-size:.74rem;color:var(--ink2);display:flex;flex-wrap:wrap;gap:6px 18px"><span style="color:var(--uni);font-weight:600">THE PUSH IS THIS WEEK:</span><span><b>Tue</b> SV (rehearsal)</span><span><b>Wed</b> PFO &middot; TPP &middot; COD</span><span><b>Thu</b> TFP &middot; ABS &middot; THERA</span><span><b>Fri</b> SBD &middot; CPG &middot; RED</span><span>AOC once scope is confirmed</span><span>&middot; verify next week &middot; retire from ~Nov after dual-run</span></div>
-<style>@media(max-width:760px){#tldr .two{grid-template-columns:1fr!important}#tldr div[style*="34px"]{grid-template-columns:1fr!important}#tldr div[style*="flex"]{transform:none}}</style>
+<p class="lede" style="max-width:72ch">We are merging four separate account worlds (Outrider Digital, Growth Archon, Kas &amp; Z / KAMG and AgencyOS) into one, on <b>tryagencyos.ai</b>. Today logins live across five-plus domains, client platforms were granted to whatever address was handy, and people who left still hold keys. When we are done there is one Google Workspace, one login per person for every internal tool (<b>firstname@tryagencyos.ai</b>), and all client access under one shared address (<b>team@tryagencyos.ai</b>) with its credentials in the team vault. Clients notice almost nothing: they keep emailing the addresses they already know, no mailbox is migrated, and when their turn comes they approve two or three access invites of under a minute each. Nothing is switched off until the new access has worked in parallel for 60 to 90 days, so every step is reversible. The client push runs this week, lowest risk first.</p>
+<ul style="list-style:none;margin:18px 0 0;padding:0;max-width:72ch">
+<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 0 &middot; Inventory.</b> List every account we hold, flag single points of failure, make the seven decisions.</li>
+<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 1 &middot; Foundation.</b> One registrar, mail authentication (SPF, DKIM, DMARC), one password vault, 2FA for everyone.</li>
+<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 2 &middot; Identity and mail.</b> Create the firstname@ logins, attach the old domains as aliases, wire the send-as masks.</li>
+<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 3 &middot; Internal operations.</b> One Slack, one docs space, one project tool, one CRM.</li>
+<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 4 &middot; Engineering.</b> One GitHub org, one Vercel team, rotate every shared secret.</li>
+<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 5 &middot; Client access (this week).</b> Announce from the old trusted address, client adds team@tryagencyos.ai, verify by doing real work, dual-run 60 to 90 days.</li>
+<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 6 &middot; Vendors and billing.</b> Deduplicate subscriptions, move account ownership off personal addresses.</li>
+<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 7 &middot; Brand.</b> Website, listings and case studies onto the new brand, only after every client has heard directly.</li>
+<li style="padding:7px 0"><b style="color:var(--uni)">Phase 8 &middot; Decommission (+90 days).</b> Freeze old accounts, keep legacy domains renewed forever, final access audit.</li>
+</ul>
+<div style="margin-top:16px;font-family:var(--mono);font-size:.74rem;color:var(--ink2);display:flex;flex-wrap:wrap;gap:6px 18px"><span style="color:var(--uni);font-weight:600">THE PUSH IS THIS WEEK:</span><span><b>Tue</b> SV (rehearsal)</span><span><b>Wed</b> PFO &middot; TPP &middot; COD</span><span><b>Thu</b> TFP &middot; ABS &middot; THERA</span><span><b>Fri</b> SBD &middot; CPG &middot; RED</span><span>AOC once scope is confirmed</span><span>&middot; verify next week &middot; retire from ~Nov after dual-run</span></div>
 </section>
 
 <section id="overview"><div class="sechd"><h2>Where this stands</h2></div>
