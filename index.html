@@ -166,32 +166,41 @@ ol.steps li b{color:var(--ink);font-weight:600}
   border-radius:2px;color:var(--muted);background:var(--surface)}
 footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:.79rem;color:var(--muted)}
 </style></head><body>
-<nav><div class="navin"><span class="brand">Migration Board</span><a href="#tldr">Short version</a><a href="#overview">Overview</a><a href="#phases">Phases</a><a href="#queue">Client queue</a><a href="#playbooks">Playbooks</a><a href="access.html">Access map</a></div></nav>
+<nav><div class="navin"><span class="brand">Migration Board</span><a href="#tldr">30 seconds</a><a href="#overview">Overview</a><a href="#phases">Phases</a><a href="#queue">Client queue</a><a href="#playbooks">Playbooks</a><a href="access.html">Access map</a></div></nav>
 <div class="wrap">
 <header><span class="eyebrow">v0.2 &middot; first batch in motion</span>
 <h1 style="margin-top:8px">Four estates into one</h1>
 <div class="hdmeta"><span><b>Snapshot</b> 2026-08-27</span><span><b>Owner</b> Track A assigned &middot; Track B pending sign-off</span><span><b>Span</b> 3 weeks + 90-day cleanup</span><span><b>View</b> codes only</span></div>
 <div class="dest">&rarr; team@tryagencyos.ai &middot; client grants (identities: firstname@)</div></header>
 <section id="tldr" style="padding-top:30px">
-<div class="sechd"><h2>The short version</h2></div>
-<p class="lede" style="max-width:68ch">Four company setups become one. Everything internal runs on the AgencyOS accounts we already have, and one new brand fronts all new clients. Three moves:</p>
-<ul style="list-style:none;margin:16px 0 0;padding:0;max-width:70ch">
-<li style="padding:8px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">1 &middot; Backend: one owner account.</b> GitHub, Vercel, every tool and every client platform grant live under <b>team@tryagencyos.ai</b>, credentials in the shared vault.</li>
-<li style="padding:8px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">2 &middot; Client access.</b> Each client adds team@tryagencyos.ai on their platforms, two or three one-minute approvals. Existing access stays in place; nothing is removed until the new access has done the real work for 60 to 90 days.</li>
-<li style="padding:8px 0"><b style="color:var(--uni)">3 &middot; Client-facing: faber.house.</b> New clients only ever hear from a faber.house address. Existing clients keep the addresses they already know, forever, and no mailbox is ever migrated.</li>
-</ul>
-<div class="panel" style="margin-top:18px;max-width:70ch"><div class="phd"><h3>The emails</h3><span class="tag now" style="margin-left:auto">live when faber.house mail lands</span></div>
-<div class="pitem">One faber.house address per person: <span class="mono">jack@ &middot; kas@ &middot; daniel@ &middot; rehan@ &middot; mubshar@ &middot; lianna@ &middot; rasika@</span></div>
-<div class="pitem">Each is a send-as on the person&rsquo;s existing AgencyOS account. No new inboxes, no new logins, no role addresses</div>
-<div class="pitem">All platform access, every client: <span class="mono">team@tryagencyos.ai</span> only</div></div>
-<div class="panel" style="margin-top:12px;max-width:70ch"><div class="phd"><h3>Where this is right now</h3></div>
-<div class="pitem">Done: the full address map (current vs target, on AOPS-290), this board, and every task filed with an owner and a date (AOPS-328 to 334 plus the first client batch, SV)</div>
-<div class="pitem">This week: verify accounts and vault team@, fix mail authentication on the old domains, faber.house mail goes live, SV client batch sends</div>
-<div class="pitem">Hard rule: nothing gets suspended or removed until every tool is re-keyed and the parallel run is over</div></div>
-<div class="panel" style="margin-top:12px;max-width:70ch"><div class="phd"><h3>How to read this page</h3></div>
-<div class="pitem">Got two minutes: the section above is the whole story, stop here</div>
-<div class="pitem">Doing a client batch: open Playbooks, read "The general model", then your client&rsquo;s row in the queue</div>
-<div class="pitem">Everything below is reference. Open a playbook only for the platform you are touching, when you touch it</div></div>
+<div class="sechd"><h2>The plan in 30 seconds</h2></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:14px">
+<div class="panel"><div class="phd"><h3>Emails &middot; new clients</h3></div>
+<div class="pitem mono">jack@faber.house</div>
+<div class="pitem mono">kas@faber.house</div>
+<div class="pitem mono">daniel@faber.house</div>
+<div class="pitem mono">rehan@faber.house</div>
+<div class="pitem mono">mubshar@faber.house</div>
+<div class="pitem mono">lianna@faber.house</div>
+<div class="pitem mono">rasika@faber.house</div>
+<div class="pitem">On your existing AgencyOS login. No new inbox.</div></div>
+<div class="panel"><div class="phd"><h3>Access &middot; one account</h3></div>
+<div class="pitem mono" style="font-weight:700">team@tryagencyos.ai</div>
+<div class="pitem">Owns GitHub, Vercel, all tools</div>
+<div class="pitem">Every client platform grants access to it</div>
+<div class="pitem">Login lives in the shared vault</div></div>
+<div class="panel"><div class="phd"><h3>Rules</h3></div>
+<div class="pitem">Existing clients: nothing changes for them</div>
+<div class="pitem">No mailbox is ever migrated</div>
+<div class="pitem">Old + new access run together 60 to 90 days</div>
+<div class="pitem">Suspend nothing until tools are re-keyed</div></div>
+<div class="panel"><div class="phd"><h3>This week</h3></div>
+<div class="pitem">Fri: faber.house mail live, 7 addresses work</div>
+<div class="pitem">Old-domain mail auth fixed (SPF/DKIM)</div>
+<div class="pitem">First client batch: SV</div>
+<div class="pitem">Tasks: AOPS-328 to 334, owners + dates set</div></div>
+</div>
+<p class="lede" style="margin-top:14px;font-size:.85rem;color:var(--muted)">Everything below is reference detail. Open a playbook only when you touch that platform.</p>
 </section>
 
 <section id="overview"><div class="sechd"><h2>Where this stands</h2></div>
