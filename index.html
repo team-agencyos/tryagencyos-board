@@ -174,30 +174,24 @@ footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-si
 <div class="dest">&rarr; team@tryagencyos.ai &middot; client grants (identities: firstname@)</div></header>
 <section id="tldr" style="padding-top:30px">
 <div class="sechd"><h2>The short version</h2></div>
-<p class="lede" style="max-width:72ch">We are merging four separate account worlds (Outrider Digital, Growth Archon, Kas &amp; Z / KAMG and AgencyOS) into one, on <b>tryagencyos.ai</b>. Today logins live across five-plus domains, client platforms were granted to whatever address was handy, and people who left still hold keys. When we are done there is one Google Workspace, one login per person for every internal tool (<b>firstname@tryagencyos.ai</b>), and all client access under one shared address (<b>team@tryagencyos.ai</b>) with its credentials in the team vault. Clients notice almost nothing: they keep emailing the addresses they already know, no mailbox is migrated, and when their turn comes they approve two or three access invites of under a minute each. Nothing is switched off until the new access has worked in parallel for 60 to 90 days, so every step is reversible. The client push runs this week, lowest risk first.</p>
-<ul style="list-style:none;margin:18px 0 0;padding:0;max-width:72ch">
-<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 0 &middot; Inventory.</b> List every account we hold, flag single points of failure, make the seven decisions.</li>
-<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 1 &middot; Foundation.</b> One registrar, mail authentication (SPF, DKIM, DMARC), one password vault, 2FA for everyone.</li>
-<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 2 &middot; Identity and mail.</b> Create the firstname@ logins, attach the old domains as aliases, wire the send-as masks.</li>
-<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 3 &middot; Internal operations.</b> One Slack, one docs space, one project tool, one CRM.</li>
-<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 4 &middot; Engineering.</b> One GitHub org, one Vercel team, rotate every shared secret.</li>
-<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 5 &middot; Client access (this week).</b> Announce from the old trusted address, client adds team@tryagencyos.ai, verify by doing real work, dual-run 60 to 90 days.</li>
-<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 6 &middot; Vendors and billing.</b> Deduplicate subscriptions, move account ownership off personal addresses.</li>
-<li style="padding:7px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">Phase 7 &middot; Brand.</b> Website, listings and case studies onto the new brand, only after every client has heard directly.</li>
-<li style="padding:7px 0"><b style="color:var(--uni)">Phase 8 &middot; Decommission (+90 days).</b> Freeze old accounts, keep legacy domains renewed forever, final access audit.</li>
+<p class="lede" style="max-width:68ch">Four company setups become one. Everything internal runs on the AgencyOS accounts we already have, and one new brand fronts all new clients. Three moves:</p>
+<ul style="list-style:none;margin:16px 0 0;padding:0;max-width:70ch">
+<li style="padding:8px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">1 &middot; Backend: one owner account.</b> GitHub, Vercel, every tool and every client platform grant live under <b>team@tryagencyos.ai</b>, credentials in the shared vault.</li>
+<li style="padding:8px 0;border-bottom:1px solid var(--lineSoft)"><b style="color:var(--uni)">2 &middot; Client access.</b> Each client adds team@tryagencyos.ai on their platforms, two or three one-minute approvals. Existing access stays in place; nothing is removed until the new access has done the real work for 60 to 90 days.</li>
+<li style="padding:8px 0"><b style="color:var(--uni)">3 &middot; Client-facing: faber.house.</b> New clients only ever hear from a faber.house address. Existing clients keep the addresses they already know, forever, and no mailbox is ever migrated.</li>
 </ul>
-<div class="panel" style="margin-top:18px;max-width:72ch"><div class="phd"><h3>Which address emails whom</h3></div>
-<div class="pitem">New clients, any brand: only from the new Faber House addresses, from the day its mail is live. Never from the old domains</div>
-<div class="pitem">Existing Outrider clients: keep getting replies from the outriderdigital.com addresses they already know</div>
-<div class="pitem">Existing KAMG clients: keep getting replies from the kasandz.com addresses they already know</div>
-<div class="pitem">Platform access grants, every client old or new: team@tryagencyos.ai only</div>
-<div class="pitem" style="color:var(--muted)">The person-by-person map (every current address, what each becomes) is internal: see AOPS-290</div></div>
-<div style="margin-top:16px;font-family:var(--mono);font-size:.74rem;color:var(--ink2);display:flex;flex-wrap:wrap;gap:6px 18px"><span style="color:var(--uni);font-weight:600">THE PUSH IS THIS WEEK:</span><span><b>Tue</b> SV (rehearsal)</span><span><b>Wed</b> PFO &middot; TPP &middot; COD</span><span><b>Thu</b> TFP &middot; ABS &middot; THERA</span><span><b>Fri</b> SBD &middot; CPG &middot; RED</span><span>AOC once scope is confirmed</span><span>&middot; verify next week &middot; retire from ~Nov after dual-run</span></div>
-<div class="panel" style="margin-top:18px;max-width:72ch"><div class="phd"><h3>How to read this page</h3></div>
-<div class="pitem">Got two minutes: the summary above is the whole story, stop there</div>
-<div class="pitem">Running a client batch this week: open Playbooks, read "The general model", then find your client's row in the queue</div>
-<div class="pitem">Jack and Kas: the seven decisions under "Where this stands" are yours, everything waits on them</div>
-<div class="pitem">Everything else is reference. Open a playbook only for the platform you are touching, when you touch it</div></div>
+<div class="panel" style="margin-top:18px;max-width:70ch"><div class="phd"><h3>The emails</h3><span class="tag now" style="margin-left:auto">live when faber.house mail lands</span></div>
+<div class="pitem">One faber.house address per person: <span class="mono">jack@ &middot; kas@ &middot; daniel@ &middot; rehan@ &middot; mubshar@ &middot; lianna@ &middot; rasika@</span></div>
+<div class="pitem">Each is a send-as on the person&rsquo;s existing AgencyOS account. No new inboxes, no new logins, no role addresses</div>
+<div class="pitem">All platform access, every client: <span class="mono">team@tryagencyos.ai</span> only</div></div>
+<div class="panel" style="margin-top:12px;max-width:70ch"><div class="phd"><h3>Where this is right now</h3></div>
+<div class="pitem">Done: the full address map (current vs target, on AOPS-290), this board, and every task filed with an owner and a date (AOPS-328 to 334 plus the first client batch, SV)</div>
+<div class="pitem">This week: verify accounts and vault team@, fix mail authentication on the old domains, faber.house mail goes live, SV client batch sends</div>
+<div class="pitem">Hard rule: nothing gets suspended or removed until every tool is re-keyed and the parallel run is over</div></div>
+<div class="panel" style="margin-top:12px;max-width:70ch"><div class="phd"><h3>How to read this page</h3></div>
+<div class="pitem">Got two minutes: the section above is the whole story, stop here</div>
+<div class="pitem">Doing a client batch: open Playbooks, read "The general model", then your client&rsquo;s row in the queue</div>
+<div class="pitem">Everything below is reference. Open a playbook only for the platform you are touching, when you touch it</div></div>
 </section>
 
 <section id="overview"><div class="sechd"><h2>Where this stands</h2></div>
